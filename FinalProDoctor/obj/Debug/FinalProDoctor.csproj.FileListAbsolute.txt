@@ -1,0 +1,10 @@
+C:\Users\Tomer\source\repos\FinalProDoctor\bin\Debug\FinalProDoctor.exe.config
+C:\Users\Tomer\source\repos\FinalProDoctor\bin\Debug\FinalProDoctor.exe
+C:\Users\Tomer\source\repos\FinalProDoctor\bin\Debug\FinalProDoctor.pdb
+C:\Users\Tomer\source\repos\FinalProDoctor\obj\Debug\FinalProDoctor.csprojAssemblyReference.cache
+C:\Users\Tomer\source\repos\FinalProDoctor\obj\Debug\FinalProDoctor.Form1.resources
+C:\Users\Tomer\source\repos\FinalProDoctor\obj\Debug\FinalProDoctor.Properties.Resources.resources
+C:\Users\Tomer\source\repos\FinalProDoctor\obj\Debug\FinalProDoctor.csproj.GenerateResource.cache
+C:\Users\Tomer\source\repos\FinalProDoctor\obj\Debug\FinalProDoctor.csproj.CoreCompileInputs.cache
+C:\Users\Tomer\source\repos\FinalProDoctor\obj\Debug\FinalProDoctor.exe
+C:\Users\Tomer\source\repos\FinalProDoctor\obj\Debug\FinalProDoctor.pdb
