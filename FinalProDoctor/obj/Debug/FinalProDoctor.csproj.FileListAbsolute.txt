@@ -8,3 +8,15 @@ C:\Users\Tomer\source\repos\FinalProDoctor\obj\Debug\FinalProDoctor.csproj.Gener
 C:\Users\Tomer\source\repos\FinalProDoctor\obj\Debug\FinalProDoctor.csproj.CoreCompileInputs.cache
 C:\Users\Tomer\source\repos\FinalProDoctor\obj\Debug\FinalProDoctor.exe
 C:\Users\Tomer\source\repos\FinalProDoctor\obj\Debug\FinalProDoctor.pdb
+C:\Users\Tomer\OneDrive\מסמכים\GitHub\FinalPro\FinalProDoctor\bin\Debug\FinalProDoctor.exe.config
+C:\Users\Tomer\OneDrive\מסמכים\GitHub\FinalPro\FinalProDoctor\bin\Debug\FinalProDoctor.exe
+C:\Users\Tomer\OneDrive\מסמכים\GitHub\FinalPro\FinalProDoctor\bin\Debug\FinalProDoctor.pdb
+C:\Users\Tomer\OneDrive\מסמכים\GitHub\FinalPro\FinalProDoctor\obj\Debug\FinalProDoctor.csprojAssemblyReference.cache
+C:\Users\Tomer\OneDrive\מסמכים\GitHub\FinalPro\FinalProDoctor\obj\Debug\FinalProDoctor.Form1.resources
+C:\Users\Tomer\OneDrive\מסמכים\GitHub\FinalPro\FinalProDoctor\obj\Debug\FinalProDoctor.Properties.Resources.resources
+C:\Users\Tomer\OneDrive\מסמכים\GitHub\FinalPro\FinalProDoctor\obj\Debug\FinalProDoctor.Sign.resources
+C:\Users\Tomer\OneDrive\מסמכים\GitHub\FinalPro\FinalProDoctor\obj\Debug\FinalProDoctor.csproj.GenerateResource.cache
+C:\Users\Tomer\OneDrive\מסמכים\GitHub\FinalPro\FinalProDoctor\obj\Debug\FinalProDoctor.csproj.CoreCompileInputs.cache
+C:\Users\Tomer\OneDrive\מסמכים\GitHub\FinalPro\FinalProDoctor\obj\Debug\FinalProDoctor.exe
+C:\Users\Tomer\OneDrive\מסמכים\GitHub\FinalPro\FinalProDoctor\obj\Debug\FinalProDoctor.pdb
+C:\Users\Tomer\OneDrive\מסמכים\GitHub\FinalPro\FinalProDoctor\obj\Debug\FinalProDoctor.Medical.resources
