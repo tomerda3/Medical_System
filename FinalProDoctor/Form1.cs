@@ -34,5 +34,32 @@ namespace FinalProDoctor
         {
             Environment.Exit(0);
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //int password;
+            //textBox1.Text = "";
+            //textBox2.Text = "";
+            if (textBox1.Text == "natlia")
+            {
+                textBox3.Text = "The user name is incorrect" ;
+                return;
+            }
+
+            if (Int32.Parse(textBox2.Text) > 3000)
+            {
+                textBox3.Text = "The password is incorrect";
+                return;
+            }
+
+            /*
+            Read from the file.
+            */
+
+            textBox3.Clear();
+            textBox1.Clear();
+            textBox2.Clear();
+        }
+
     }
 }
