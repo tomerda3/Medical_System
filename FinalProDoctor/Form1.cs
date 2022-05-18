@@ -37,28 +37,28 @@ namespace FinalProDoctor
 
         private void button2_Click(object sender, EventArgs e)
         {
-            /*            //int password;
-                        //textBox1.Text = "";
-                        //textBox2.Text = "";
-                        if (textBox1.Text == "natlia")
-                        {
-                            textBox3.Text = "The user name is incorrect" ;
-                            return;
-                        }
+            //int password;
+            //textBox1.Text = "";
+            //textBox2.Text = "";
+            if (textBox1.Text == "natlia")
+            {
+                textBox3.Text = "The user name is incorrect";
+                return;
+            }
 
-                        if (Int32.Parse(textBox2.Text) > 3000)
-                        {
-                            textBox3.Text = "The password is incorrect";
-                            return;
-                        }
+            if (Int32.Parse(textBox2.Text) > 3000)
+            {
+                textBox3.Text = "The password is incorrect";
+                return;
+            }
 
-                        *//*
-                        Read from the file.
-                        *//*
+            /*
+             * Read from the file.
+            */
 
-                        textBox3.Clear();
-                        textBox1.Clear();
-                        textBox2.Clear();*/
+            textBox3.Clear();
+            textBox1.Clear();
+            textBox2.Clear();
             Medical start = new Medical();
             this.Hide();
             start.ShowDialog();
@@ -75,7 +75,7 @@ namespace FinalProDoctor
         public bool smoke;
         public int high;
         public int weight;
-        public string origin;
+        public int origin;
 
         public float WBC =0;
         public float Neut =0;
@@ -90,7 +90,7 @@ namespace FinalProDoctor
         public float AP = 0;
 
 
-        public Patient(string name, int age, string sex, bool smoke, int high, int weight,string origin)
+        public Patient(string name, int age, string sex, bool smoke, int high, int weight,int origin)
         {
             this.name = name;
             this.age = age;
@@ -108,7 +108,7 @@ namespace FinalProDoctor
             this.smoke = false;
             this.high = -1;
             this.weight = -1;
-            this.origin = "no origin";
+            this.origin = -1;
         }
         public void setBloodTest(float WBC, float Neut, float Lymph, float RBC, float HCT, float Urea, float Hb, float Crtn, float Iron, float HDL, float AP)
         {
