@@ -40,6 +40,9 @@ namespace FinalProDoctor
             float HDL = 0;
             float AP = 0;
 
+            textBox1.Text = string.Empty; textBox2.Text = string.Empty; textBox3.Text = string.Empty;
+            checkBox1.Checked = false; checkBox2.Checked = false; checkBox3.Checked = false; checkBox4.Checked = false;
+          
             textBox5.Text = "";
             chart1.Titles.Clear();
             foreach (var series in chart1.Series)
@@ -47,38 +50,22 @@ namespace FinalProDoctor
                 series.Points.Clear();
             }
 
-            if (WBCBox.Text == "")
-            {
 
-            }
-            else
-            {
-                try
-                {
-                    WBC = float.Parse(WBCBox.Text);
-                    Neut = float.Parse(NeutBox.Text); 
-                    Lymph = float.Parse(LymphBox.Text);
-                    RBC = float.Parse(RBCBox.Text);
-                    HCT = float.Parse(HCTBox.Text);
-                    Urea = float.Parse(UreaBox.Text); 
-                    Hb = float.Parse(HbBox.Text); 
-                    Crtn = float.Parse(CrtnBox.Text); 
-                    Iron = float.Parse(IronBox.Text); 
-                }
+            string sex;
+            if (checkBox1.Checked)
+                sex = "male";
+            else sex = "female";
 
-                catch (FormatException e1)
-                {
-                    textBox5.Text = "There is a problem in the input data";
-                }
-
-                string sex;
-                if (checkBox1.Checked)
-                    sex = "male";
-                else sex = "female";
-                
-                patient1 = new Patient(textBox1.Text, Int32.Parse(textBox2.Text), sex, checkBox1.Checked, Int32.Parse(textBox3.Text), Int32.Parse(textBox4.Text));
-                patient1.setBloodTest(WBC, Neut, Lymph, RBC, HCT, Urea, Hb, Crtn, Iron, HDL,AP);
-            }
+            string origin = "None";
+            if (comboBox1.SelectedIndex == 0)
+                origin = "ethopi";
+            if (comboBox1.SelectedIndex == 1)
+                origin = "mizrahi";
+            if (comboBox1.SelectedIndex == 2)
+                origin.Replace("None","askhnazi");
+            Console.WriteLine("\n------ printtt: "+ comboBox1.SelectedIndex+"\n");
+            patient1 = new Patient(textBox1.Text, Int32.Parse(textBox2.Text), sex, checkBox1.Checked, Int32.Parse(textBox3.Text), Int32.Parse(textBox4.Text), origin);
+            
             chart1.Series["BloodTest"].Points.AddXY("WBC", WBC);
             chart1.Series["BloodTest"].Points.AddXY("Neut", Neut);
             chart1.Series["BloodTest"].Points.AddXY("Lymph", Lymph);
@@ -101,12 +88,51 @@ namespace FinalProDoctor
         private void button2_Click(object sender, EventArgs e)
         {
             richTextBox1.Clear();
+
+            float WBC = 0;
+            float Neut = 0;
+            float Lymph = 0;
+            float RBC = 0;
+            float HCT = 0;
+            float Urea = 0;
+            float Hb = 0;
+            float Crtn = 0;
+            float Iron = 0;
+            float HDL = 0;
+            float AP = 0;
+            if (WBCBox.Text == "")
+            {
+
+            }
+            else
+            {
+                try
+                {
+                    WBC = float.Parse(WBCBox.Text);
+                    Neut = float.Parse(NeutBox.Text);
+                    Lymph = float.Parse(LymphBox.Text);
+                    RBC = float.Parse(RBCBox.Text);
+                    HCT = float.Parse(HCTBox.Text);
+                    Urea = float.Parse(UreaBox.Text);
+                    Hb = float.Parse(HbBox.Text);
+                    Crtn = float.Parse(CrtnBox.Text);
+                    Iron = float.Parse(IronBox.Text);
+                }
+
+                catch (FormatException e1)
+                {
+                    textBox5.Text = "There is a problem in the input data";
+                }
+            }
+
             if (patient1 == null)
             {
                 MessageBox.Show("There is not patient");
                 return;
             }
-            richTextBox1.AppendText("Examination for the patient: " + patient1.name +"\n");
+            patient1.setBloodTest(WBC, Neut, Lymph, RBC, HCT, Urea, Hb, Crtn, Iron, HDL, AP);
+
+            richTextBox1.AppendText(" שם המטופל: " + patient1.name +"\n");
 
             if (patient1.age >= 18)
                 analysisForAdult();
@@ -114,7 +140,6 @@ namespace FinalProDoctor
                 analysisForChildren();
             if (patient1.age <= 3)
                 analysisForbaby();
-
 
         }
         public void analysisForAdult()
@@ -191,6 +216,124 @@ namespace FinalProDoctor
                 // add if mizrahi to aptient
             }
 
+            if(patient1.sex == "man")
+            {
+                if (12 < patient1.Hb)
+                {
+
+                }
+                if (18 > patient1.Hb)
+                {
+
+                }
+            }
+            else
+            {
+                if (12 < patient1.Hb)
+                {
+                
+                }
+                if (16 > patient1.Hb)
+                {
+
+                }
+            }
+
+            if(patient1.age > 59)
+            {
+                if (0.6 < patient1.Crtn)
+                {
+
+                }
+                if (1.2 > patient1.Crtn)
+                {
+
+                }
+            }
+            else
+            {
+                if (0.6 < patient1.Crtn)
+                {
+
+                }
+                if (1 > patient1.Crtn)
+                {
+
+                }
+            }
+
+            if (patient1.sex == "man")
+            {
+                if (60 < patient1.Iron)
+                {
+
+                }
+                if (160 > patient1.Iron)
+                {
+
+                }
+            }
+            else
+            {
+                if (48 < patient1.Iron)
+                {
+
+                }
+                if (96 > patient1.Iron)
+                {
+
+                }
+            }
+            if (patient1.sex == "man")
+            {
+                if (62 < patient1.HDL)
+                {
+                    if(patient1.origin == "ethopi" && 74.4 < patient1.HDL)
+                    {
+
+                    }
+                }
+                if (29 > patient1.HDL)
+                {
+                    if (patient1.origin == "ethopi" && 23.2 > patient1.HDL)
+                    {
+
+                    }
+                }
+            }
+            else
+            {
+                if (82 < patient1.HDL)
+                {
+
+                }
+                if (34 > patient1.HDL)
+                {
+
+                }
+            }
+            if (patient1.origin == "mizrahi")
+            {
+                if (120 < patient1.AP)
+                {
+
+                }
+                if (60 > patient1.AP)
+                {
+
+                }
+            }
+            else
+            {
+                if (90 < patient1.AP)
+                {
+
+                }
+                if (30 > patient1.AP)
+                {
+
+                }
+            }
         }
         public void analysisForChildren()
         {
@@ -264,7 +407,95 @@ namespace FinalProDoctor
             {
                 // add if mizrahi to aptient
             }
-            
+
+            if (11.5 < patient1.Hb)
+            {
+
+            }
+            if (15.5 > patient1.Hb)
+            {
+
+            }
+            if (0.5 < patient1.Crtn)
+            {
+
+            }
+            if (1 > patient1.Crtn)
+            {
+
+            }
+            if (patient1.sex == "man")
+            {
+                if (60 < patient1.Iron)
+                {
+
+                }
+                if (160 > patient1.Iron)
+                {
+
+                }
+            }
+            else
+            {
+                if (48 < patient1.Iron)
+                {
+
+                }
+                if (96 > patient1.Iron)
+                {
+
+                }
+            }
+            if (patient1.sex == "man")
+            {
+                if (62 < patient1.HDL)
+                {
+                    if (patient1.origin == "ethopi" && 74.4 < patient1.HDL)
+                    {
+
+                    }
+                }
+                if (29 > patient1.HDL)
+                {
+                    if (patient1.origin == "ethopi" && 23.2 > patient1.HDL)
+                    {
+
+                    }
+                }
+            }
+            else
+            {
+                if (82 < patient1.HDL)
+                {
+
+                }
+                if (34 > patient1.HDL)
+                {
+
+                }
+            }
+            if (patient1.origin == "mizrahi")
+            {
+                if (120 < patient1.AP)
+                {
+
+                }
+                if (60 > patient1.AP)
+                {
+
+                }
+            }
+            else
+            {
+                if (90 < patient1.AP)
+                {
+
+                }
+                if (30 > patient1.AP)
+                {
+
+                }
+            }
         }
         public void analysisForbaby()
         {
@@ -338,8 +569,99 @@ namespace FinalProDoctor
             {
                 // add if mizrahi to aptient
             }
-        }
+            if (11.5 < patient1.Hb)
+            {
 
+            }
+            if (15.5 > patient1.Hb)
+            {
+
+            }
+            if (0.2 < patient1.Crtn)
+            {
+
+            }
+            if (0.5 > patient1.Crtn)
+            {
+
+            }
+            if (patient1.sex == "man")
+            {
+                if (60 < patient1.Iron)
+                {
+
+                }
+                if (160 > patient1.Iron)
+                {
+
+                }
+            }
+            else
+            {
+                if (48 < patient1.Iron)
+                {
+
+                }
+                if (96 > patient1.Iron)
+                {
+
+                }
+            }
+            if (patient1.sex == "man")
+            {
+                if (62 < patient1.HDL)
+                {
+                    if (patient1.origin == "ethopi" && 74.4 < patient1.HDL)
+                    {
+
+                    }
+                }
+                if (29 > patient1.HDL)
+                {
+                    if (patient1.origin == "ethopi" && 23.2 > patient1.HDL)
+                    {
+
+                    }
+                }
+            }
+            else
+            {
+                if (82 < patient1.HDL)
+                {
+
+                }
+                if (34 > patient1.HDL)
+                {
+
+                }
+            }
+            if (patient1.origin == "mizrahi")
+            {
+                if (120 < patient1.AP)
+                {
+
+                }
+                if (60 > patient1.AP)
+                {
+
+                }
+            }
+            else
+            {
+                if (90 < patient1.AP)
+                {
+
+                }
+                if (30 > patient1.AP)
+                {
+
+                }
+            }
+        }
+        public void ClearAll()
+        {
+            //textBox1.Clear;
+        }
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
 
@@ -521,6 +843,11 @@ namespace FinalProDoctor
         }
 
         private void chart1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
