@@ -75,6 +75,7 @@ namespace FinalProDoctor
         public bool smoke;
         public int high;
         public int weight;
+        public string origin;
 
         public float WBC =0;
         public float Neut =0;
@@ -89,7 +90,7 @@ namespace FinalProDoctor
         public float AP = 0;
 
 
-        public Patient(string name, int age, string sex, bool smoke, int high, int weight)
+        public Patient(string name, int age, string sex, bool smoke, int high, int weight,string origin)
         {
             this.name = name;
             this.age = age;
@@ -97,6 +98,7 @@ namespace FinalProDoctor
             this.smoke = smoke;
             this.high = high;
             this.weight = weight;
+            this.origin = origin;
         }
         public Patient()
         {
@@ -106,6 +108,7 @@ namespace FinalProDoctor
             this.smoke = false;
             this.high = -1;
             this.weight = -1;
+            this.origin = "no origin";
         }
         public void setBloodTest(float WBC, float Neut, float Lymph, float RBC, float HCT, float Urea, float Hb, float Crtn, float Iron, float HDL, float AP)
         {
