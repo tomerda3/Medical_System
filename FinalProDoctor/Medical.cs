@@ -39,9 +39,6 @@ namespace FinalProDoctor
             float Iron = 0;
             float HDL = 0;
             float AP = 0;
-
-            textBox1.Text = string.Empty; textBox2.Text = string.Empty; textBox3.Text = string.Empty;
-            checkBox1.Checked = false; checkBox2.Checked = false; checkBox3.Checked = false; checkBox4.Checked = false;
           
             textBox5.Text = "";
             chart1.Titles.Clear();
@@ -56,15 +53,9 @@ namespace FinalProDoctor
                 sex = "male";
             else sex = "female";
 
-            string origin = "None";
-            if (comboBox1.SelectedIndex == 0)
-                origin = "ethopi";
-            if (comboBox1.SelectedIndex == 1)
-                origin = "mizrahi";
-            if (comboBox1.SelectedIndex == 2)
-                origin.Replace("None","askhnazi");
-            Console.WriteLine("\n------ printtt: "+ comboBox1.SelectedIndex+"\n");
-            patient1 = new Patient(textBox1.Text, Int32.Parse(textBox2.Text), sex, checkBox1.Checked, Int32.Parse(textBox3.Text), Int32.Parse(textBox4.Text), origin);
+            Console.WriteLine("\n------ printtt: \n");
+            int orindex = comboBox1.SelectedIndex;
+            patient1 = new Patient(textBox1.Text, Int32.Parse(textBox2.Text), sex, checkBox1.Checked, Int32.Parse(textBox3.Text), Int32.Parse(textBox4.Text), orindex);
             
             chart1.Series["BloodTest"].Points.AddXY("WBC", WBC);
             chart1.Series["BloodTest"].Points.AddXY("Neut", Neut);
@@ -117,6 +108,9 @@ namespace FinalProDoctor
                     Hb = float.Parse(HbBox.Text);
                     Crtn = float.Parse(CrtnBox.Text);
                     Iron = float.Parse(IronBox.Text);
+                    HDL = float.Parse(HDLBox.Text);
+                    AP = float.Parse(APBox.Text);
+
                 }
 
                 catch (FormatException e1)
@@ -130,13 +124,14 @@ namespace FinalProDoctor
                 MessageBox.Show("There is not patient");
                 return;
             }
-            patient1.setBloodTest(WBC, Neut, Lymph, RBC, HCT, Urea, Hb, Crtn, Iron, HDL, AP);
+            if(patient1 != null)
+                patient1.setBloodTest(WBC, Neut, Lymph, RBC, HCT, Urea, Hb, Crtn, Iron, HDL, AP);
 
             richTextBox1.AppendText(" שם המטופל: " + patient1.name +"\n");
 
             if (patient1.age >= 18)
                 analysisForAdult();
-            if (patient1.age <= 18 && patient1.age > 3)
+            if (patient1.age < 18 && patient1.age > 3)
                 analysisForChildren();
             if (patient1.age <= 3)
                 analysisForbaby();
@@ -288,14 +283,14 @@ namespace FinalProDoctor
             {
                 if (62 < patient1.HDL)
                 {
-                    if(patient1.origin == "ethopi" && 74.4 < patient1.HDL)
+                    if(patient1.origin == 0 && 74.4 < patient1.HDL)
                     {
 
                     }
                 }
                 if (29 > patient1.HDL)
                 {
-                    if (patient1.origin == "ethopi" && 23.2 > patient1.HDL)
+                    if (patient1.origin == 0 && 23.2 > patient1.HDL)
                     {
 
                     }
@@ -312,7 +307,7 @@ namespace FinalProDoctor
 
                 }
             }
-            if (patient1.origin == "mizrahi")
+            if (patient1.origin == 2)
             {
                 if (120 < patient1.AP)
                 {
@@ -450,14 +445,14 @@ namespace FinalProDoctor
             {
                 if (62 < patient1.HDL)
                 {
-                    if (patient1.origin == "ethopi" && 74.4 < patient1.HDL)
+                    if (patient1.origin == 0 && 74.4 < patient1.HDL)
                     {
 
                     }
                 }
                 if (29 > patient1.HDL)
                 {
-                    if (patient1.origin == "ethopi" && 23.2 > patient1.HDL)
+                    if (patient1.origin == 0 && 23.2 > patient1.HDL)
                     {
 
                     }
@@ -474,7 +469,7 @@ namespace FinalProDoctor
 
                 }
             }
-            if (patient1.origin == "mizrahi")
+            if (patient1.origin == 2)
             {
                 if (120 < patient1.AP)
                 {
@@ -611,14 +606,14 @@ namespace FinalProDoctor
             {
                 if (62 < patient1.HDL)
                 {
-                    if (patient1.origin == "ethopi" && 74.4 < patient1.HDL)
+                    if (patient1.origin == 0 && 74.4 < patient1.HDL)
                     {
 
                     }
                 }
                 if (29 > patient1.HDL)
                 {
-                    if (patient1.origin == "ethopi" && 23.2 > patient1.HDL)
+                    if (patient1.origin == 0 && 23.2 > patient1.HDL)
                     {
 
                     }
@@ -635,7 +630,7 @@ namespace FinalProDoctor
 
                 }
             }
-            if (patient1.origin == "mizrahi")
+            if (patient1.origin == 2)
             {
                 if (120 < patient1.AP)
                 {
@@ -846,10 +841,72 @@ namespace FinalProDoctor
         {
 
         }
-
+        public void Clearpatient()
+        {
+            textBox1.Text = string.Empty; textBox2.Text = string.Empty; textBox3.Text = string.Empty;
+            checkBox1.Checked = false; checkBox2.Checked = false; checkBox3.Checked = false; checkBox4.Checked = false;
+        }
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+        public class Patient
+        {
+            public string name;
+            public int age;
+            public string sex;
+            public bool smoke;
+            public int high;
+            public int weight;
+            public int origin;
+
+            public float WBC = 0;
+            public float Neut = 0;
+            public float Lymph = 0;
+            public float RBC = 0;
+            public float HCT = 0;
+            public float Urea = 0;
+            public float Hb = 0;
+            public float Crtn = 0;
+            public float Iron = 0;
+            public float HDL = 0;
+            public float AP = 0;
+
+
+            public Patient(string name, int age, string sex, bool smoke, int high, int weight, int origin)
+            {
+                this.name = name;
+                this.age = age;
+                this.sex = sex;
+                this.smoke = smoke;
+                this.high = high;
+                this.weight = weight;
+                this.origin = origin;
+            }
+            public Patient()
+            {
+                this.name = "no name";
+                this.age = -1;
+                this.sex = "";
+                this.smoke = false;
+                this.high = -1;
+                this.weight = -1;
+                this.origin = -1;
+            }
+            public void setBloodTest(float WBC, float Neut, float Lymph, float RBC, float HCT, float Urea, float Hb, float Crtn, float Iron, float HDL, float AP)
+            {
+                this.WBC = WBC;
+                this.Neut = Neut;
+                this.Lymph = Lymph;
+                this.RBC = RBC;
+                this.HCT = HCT;
+                this.Urea = Urea;
+                this.Hb = Hb;
+                this.Crtn = Crtn;
+                this.Iron = Iron;
+                this.HDL = HDL;
+                this.AP = AP;
+            }
         }
     }
 }
