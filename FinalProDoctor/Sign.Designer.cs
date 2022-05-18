@@ -85,7 +85,7 @@
             // button3
             // 
             this.button3.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.button3.Location = new System.Drawing.Point(1052, 491);
+            this.button3.Location = new System.Drawing.Point(1052, 563);
             this.button3.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(188, 54);
@@ -177,7 +177,7 @@
             this.textBox4.Location = new System.Drawing.Point(1028, 440);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(274, 26);
+            this.textBox4.Size = new System.Drawing.Size(345, 90);
             this.textBox4.TabIndex = 33;
             // 
             // Sign
