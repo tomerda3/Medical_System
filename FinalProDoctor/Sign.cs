@@ -38,11 +38,11 @@ namespace FinalProDoctor
                 textBox4.Text = "The user name is incorrect";
                 return;
             }
-            if (checkName(textBox2.Text) == false){
+            if (checkPassword(textBox2.Text) == false){
                 textBox4.Text = "The Password must be between 8 and 10 characters, to Contains at least one letter, one digit and one special character (!,#,$, etc.).";
                 return;
             }
-            if (checkName(textBox3.Text) == false){
+            if (checkId(textBox3.Text) == false){
                 textBox4.Text = "The id number is incorrect";
                 return;
             }
