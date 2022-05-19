@@ -53,22 +53,10 @@ namespace FinalProDoctor
                 sex = "male";
             else sex = "female";
 
-            Console.WriteLine("\n------ printtt: \n");
             int orindex = comboBox1.SelectedIndex;
             patient1 = new Patient(textBox1.Text, Int32.Parse(textBox2.Text), sex, checkBox1.Checked, Int32.Parse(textBox3.Text), Int32.Parse(textBox4.Text), orindex);
             
-            chart1.Series["BloodTest"].Points.AddXY("WBC", WBC);
-            chart1.Series["BloodTest"].Points.AddXY("Neut", Neut);
-            chart1.Series["BloodTest"].Points.AddXY("Lymph", Lymph);
-            chart1.Series["BloodTest"].Points.AddXY("RBC", RBC);
-            chart1.Series["BloodTest"].Points.AddXY("HCT", HCT);
-            chart1.Series["BloodTest"].Points.AddXY("Urea", Urea);
-            chart1.Series["BloodTest"].Points.AddXY("Hb", Hb);
-            chart1.Series["BloodTest"].Points.AddXY("Crtn", Crtn);
-            chart1.Series["BloodTest"].Points.AddXY("Iron", Iron);
-            chart1.Series["BloodTest"].Points.AddXY("HDL", HDL);
-            chart1.Series["BloodTest"].Points.AddXY("AP", AP);
-            chart1.Titles.Add("BloodTest Result");
+
         }
 
         private void WBCBox_TextChanged(object sender, EventArgs e)
@@ -91,34 +79,33 @@ namespace FinalProDoctor
             float Iron = 0;
             float HDL = 0;
             float AP = 0;
-            if (WBCBox.Text == "")
+
+            try
             {
+                // if
+                // input blood test from excel.
+
+                // else
+                // input blood test from user.
+                WBC = float.Parse(WBCBox.Text);
+                Neut = float.Parse(NeutBox.Text);
+                Lymph = float.Parse(LymphBox.Text);
+                RBC = float.Parse(RBCBox.Text);
+                HCT = float.Parse(HCTBox.Text);
+                Urea = float.Parse(UreaBox.Text);
+                Hb = float.Parse(HbBox.Text);
+                Crtn = float.Parse(CrtnBox.Text);
+                Iron = float.Parse(IronBox.Text);
+                HDL = float.Parse(HDLBox.Text);
+                AP = float.Parse(APBox.Text);
 
             }
-            else
+
+            catch (FormatException e1)
             {
-                try
-                {
-                    WBC = float.Parse(WBCBox.Text);
-                    Neut = float.Parse(NeutBox.Text);
-                    Lymph = float.Parse(LymphBox.Text);
-                    RBC = float.Parse(RBCBox.Text);
-                    HCT = float.Parse(HCTBox.Text);
-                    Urea = float.Parse(UreaBox.Text);
-                    Hb = float.Parse(HbBox.Text);
-                    Crtn = float.Parse(CrtnBox.Text);
-                    Iron = float.Parse(IronBox.Text);
-                    HDL = float.Parse(HDLBox.Text);
-                    AP = float.Parse(APBox.Text);
-
-                }
-
-                catch (FormatException e1)
-                {
-                    textBox5.Text = "There is a problem in the input data";
-                }
+                textBox5.Text = "There is a problem in the input data";
             }
-
+          
             if (patient1 == null)
             {
                 MessageBox.Show("There is not patient");
@@ -127,7 +114,22 @@ namespace FinalProDoctor
             if(patient1 != null)
                 patient1.setBloodTest(WBC, Neut, Lymph, RBC, HCT, Urea, Hb, Crtn, Iron, HDL, AP);
 
-            richTextBox1.AppendText(" שם המטופל: " + patient1.name +"\n");
+            chart1.Series["BloodTest"].Points.AddXY("WBC", WBC);
+            chart1.Series["BloodTest"].Points.AddXY("Neut", Neut);
+            chart1.Series["BloodTest"].Points.AddXY("Lymph", Lymph);
+            chart1.Series["BloodTest"].Points.AddXY("RBC", RBC);
+            chart1.Series["BloodTest"].Points.AddXY("HCT", HCT);
+            chart1.Series["BloodTest"].Points.AddXY("Urea", Urea);
+            chart1.Series["BloodTest"].Points.AddXY("Hb", Hb);
+            chart1.Series["BloodTest"].Points.AddXY("Crtn", Crtn);
+            chart1.Series["BloodTest"].Points.AddXY("Iron", Iron);
+            chart1.Series["BloodTest"].Points.AddXY("HDL", HDL);
+            chart1.Series["BloodTest"].Points.AddXY("AP", AP);
+            chart1.Titles.Add("BloodTest Result");
+
+            richTextBox1.SelectionAlignment = HorizontalAlignment.Right;
+            richTextBox1.AppendText(" : שם המטופל "+patient1.name);
+            richTextBox1.AppendText("\n : אבחון המטופל");
 
             if (patient1.age >= 18)
                 analysisForAdult();
@@ -139,11 +141,11 @@ namespace FinalProDoctor
         }
         public void analysisForAdult()
         {
-            if(11000 > patient1.WBC)
+            if(11000 < patient1.WBC)
             {
-
+                richTextBox1.AppendText("אפשרות על קיומו של זיהום, אם קיימת מחלת חום. במקרים אחרים, נדירים ביותר, עלולים ערכים גבוהים מאוד להעיד על מחלת דם או סרטן.\n");
             }
-            if (4500 < patient1.WBC)
+            if (4500 > patient1.WBC)
             {
 
             }
@@ -849,64 +851,6 @@ namespace FinalProDoctor
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-        }
-        public class Patient
-        {
-            public string name;
-            public int age;
-            public string sex;
-            public bool smoke;
-            public int high;
-            public int weight;
-            public int origin;
-
-            public float WBC = 0;
-            public float Neut = 0;
-            public float Lymph = 0;
-            public float RBC = 0;
-            public float HCT = 0;
-            public float Urea = 0;
-            public float Hb = 0;
-            public float Crtn = 0;
-            public float Iron = 0;
-            public float HDL = 0;
-            public float AP = 0;
-
-
-            public Patient(string name, int age, string sex, bool smoke, int high, int weight, int origin)
-            {
-                this.name = name;
-                this.age = age;
-                this.sex = sex;
-                this.smoke = smoke;
-                this.high = high;
-                this.weight = weight;
-                this.origin = origin;
-            }
-            public Patient()
-            {
-                this.name = "no name";
-                this.age = -1;
-                this.sex = "";
-                this.smoke = false;
-                this.high = -1;
-                this.weight = -1;
-                this.origin = -1;
-            }
-            public void setBloodTest(float WBC, float Neut, float Lymph, float RBC, float HCT, float Urea, float Hb, float Crtn, float Iron, float HDL, float AP)
-            {
-                this.WBC = WBC;
-                this.Neut = Neut;
-                this.Lymph = Lymph;
-                this.RBC = RBC;
-                this.HCT = HCT;
-                this.Urea = Urea;
-                this.Hb = Hb;
-                this.Crtn = Crtn;
-                this.Iron = Iron;
-                this.HDL = HDL;
-                this.AP = AP;
-            }
         }
     }
 }
