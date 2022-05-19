@@ -40,17 +40,31 @@ namespace FinalProDoctor
             //int password;
             //textBox1.Text = "";
             //textBox2.Text = "";
-            if (textBox1.Text == "natlia")
-            {
-                textBox3.Text = "The user name is incorrect";
-                return;
-            }
 
-            if (Int32.Parse(textBox2.Text) > 3000)
-            {
-                textBox3.Text = "The password is incorrect";
-                return;
+
+            try
+            {     
+                // Check here the user name is correct.
+                if (textBox1.Text == "natlia")
+                {
+                    textBox3.Text = "The user name is incorrect";
+                    return;
+                }
+
+                // Check here if the password is correct.
+                if (Int32.Parse(textBox2.Text) > 3000)
+                {
+                    textBox3.Text = "The password is incorrect";
+                    return;
+                }
+
             }
+            catch (FormatException e1)
+            {
+                textBox3.Text = "There is a problem in the input";
+            }
+            
+
 
             /*
              * Read from the file.
