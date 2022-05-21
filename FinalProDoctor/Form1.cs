@@ -80,6 +80,23 @@ namespace FinalProDoctor
 
         }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Form1 form1_place = new Form1();
+            this.Hide();
+            form1_place.ShowDialog();
+            this.Close();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
     public class Patient
     {
