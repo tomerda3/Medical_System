@@ -20,3 +20,4 @@ C:\Users\Tomer\OneDrive\מסמכים\GitHub\FinalPro\FinalProDoctor\obj\Debug\Fi
 C:\Users\Tomer\OneDrive\מסמכים\GitHub\FinalPro\FinalProDoctor\obj\Debug\FinalProDoctor.exe
 C:\Users\Tomer\OneDrive\מסמכים\GitHub\FinalPro\FinalProDoctor\obj\Debug\FinalProDoctor.pdb
 C:\Users\Tomer\OneDrive\מסמכים\GitHub\FinalPro\FinalProDoctor\obj\Debug\FinalProDoctor.Medical.resources
+C:\Users\Tomer\OneDrive\מסמכים\GitHub\FinalPro\FinalProDoctor\obj\Debug\FinalProDoctor.BloodTest.resources
