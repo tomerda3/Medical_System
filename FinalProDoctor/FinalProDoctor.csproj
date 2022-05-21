@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BloodTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BloodTest.Designer.cs">
+      <DependentUpon>BloodTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +73,9 @@
     <Compile Include="Sign.Designer.cs">
       <DependentUpon>Sign.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="BloodTest.resx">
+      <DependentUpon>BloodTest.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -81,6 +90,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Sign.resx">
       <DependentUpon>Sign.cs</DependentUpon>
@@ -97,6 +107,33 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\resetjpg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\resetjpg1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reset-224409910.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reset-2244099101.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reset-2244099102.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-reset-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-reset-481.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\docTeam.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\docTeam1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
