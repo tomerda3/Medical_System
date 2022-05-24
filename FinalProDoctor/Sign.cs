@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace FinalProDoctor
 {
@@ -46,10 +47,8 @@ namespace FinalProDoctor
                 textBox4.Text = "The id number is incorrect";
                 return;
             }
-
-            /*
-            Add here the user name, password and the id into the file.
-            */
+            textBox4.Text = "";
+            excelWriting();
 
             Form1 start = new Form1();
             this.Hide();
@@ -57,6 +56,32 @@ namespace FinalProDoctor
             this.Close();
 
         }
+
+        public void excelWriting()
+        {
+
+            Excel.Application myexcelApplication = new Excel.Application();
+            if (myexcelApplication != null)
+            {
+                Excel.Workbook myexcelWorkbook = myexcelApplication.Workbooks.Add();
+                Excel.Worksheet myexcelWorksheet = (Excel.Worksheet)myexcelWorkbook.Sheets.Add();
+
+                myexcelWorksheet.Cells[1, 1] = "id";
+                myexcelWorksheet.Cells[1, 2] = "user name";
+                myexcelWorksheet.Cells[1, 3] = "password";
+
+
+                myexcelWorksheet.Cells[2, 1] = textBox3.Text;
+                myexcelWorksheet.Cells[2, 2] = textBox1.Text;
+                myexcelWorksheet.Cells[2, 3] = textBox2.Text;
+
+                myexcelApplication.ActiveWorkbook.SaveAs(@"C:\Users\Tomer\OneDrive\Desktop\user.xls", Excel.XlFileFormat.xlWorkbookNormal);
+
+                myexcelWorkbook.Close();
+                myexcelApplication.Quit();
+            }
+        }
+
 
         bool checkName(string userName)
         {
@@ -102,6 +127,14 @@ namespace FinalProDoctor
             if (PassWord.Length > 10)
                 return false;
             return true;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form1 form1_place = new Form1();
+            this.Hide();
+            form1_place.ShowDialog();
+            this.Close();
         }
     }
 }
