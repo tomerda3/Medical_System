@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace FinalProDoctor
 {
@@ -41,44 +42,82 @@ namespace FinalProDoctor
             //textBox1.Text = "";
             //textBox2.Text = "";
 
-
-            try
-            {     
-                // Check here the user name is correct.
-                if (textBox1.Text == "natlia")
-                {
-                    textBox3.Text = "The user name is incorrect";
-                    return;
-                }
-
-                // Check here if the password is correct.
-                if (Int32.Parse(textBox2.Text) > 3000)
-                {
-                    textBox3.Text = "The password is incorrect";
-                    return;
-                }
-
-            }
-            catch (FormatException e1)
-            {
-                textBox3.Text = "There is a problem in the input";
-            }
             
 
+            Excel.Application excel = null;
+            excel = new Excel.Application();
+            excel.Visible = true;
+            Excel.Workbook wkb = null;
 
-            /*
-             * Read from the file.
-            */
+            wkb = Open(excel, "C:\\Users\\Tomer\\OneDrive\\Desktop\\user.xls");
+            Excel.Range searchedRangeUserName = excel.get_Range("B1", "B12");
+            Excel.Range searchedRangePassword = excel.get_Range("C1", "C12");
+            string user_name = textBox1.Text;
+            string passwordU = textBox2.Text;
+            Excel.Range currentFindUserName = searchedRangeUserName.Find(user_name);
+            Excel.Range currentFindPass = searchedRangePassword.Find(passwordU);
+            wkb.Close(true);
+            excel.Quit();
 
-            textBox3.Clear();
-            textBox1.Clear();
-            textBox2.Clear();
-            Medical start = new Medical();
-            this.Hide();
-            start.ShowDialog();
-            this.Close();
+            if (textBox1.Text == "" || textBox2.Text == "")
+            {
+                textBox3.Text = "The input is empty";
+                return;
+            }
+
+
+            if (currentFindUserName == null || currentFindPass == null)
+            {
+
+                try
+                {
+                    // Check here the user name is correct.
+                    if (currentFindUserName == null)
+                    {
+                        textBox3.Text = "The user name is incorrect";
+                        return;
+                    }
+
+                    // Check here if the password is correct.
+                    if (currentFindPass == null)
+                    {
+                        textBox3.Text = "The password is incorrect";
+                        return;
+                    }
+
+                }
+                catch (FormatException e1)
+                {
+                    textBox3.Text = "There is a problem in the input";
+                }
+
+            }
+            else
+            {
+
+                textBox3.Clear();
+                textBox1.Clear();
+                textBox2.Clear();
+                Medical start = new Medical();
+                this.Hide();
+                start.ShowDialog();
+                this.Close();
+            }
+
 
         }
+        public static Excel.Workbook Open(Excel.Application excelInstance,
+                       string fileName, bool readOnly = false, bool editable = true,
+                       bool updateLinks = true)
+        {
+            Excel.Workbook book = excelInstance.Workbooks.Open(
+                fileName, updateLinks, readOnly,
+                Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing,
+                Type.Missing, editable, Type.Missing, Type.Missing, Type.Missing,
+                Type.Missing, Type.Missing);
+            return book;
+        }
+
 
         private void button4_Click(object sender, EventArgs e)
         {
@@ -119,7 +158,6 @@ namespace FinalProDoctor
         public float Iron =0;
         public float HDL = 0;
         public float AP = 0;
-
 
         public Patient(string name, int age, string sex, bool smoke, int high, int weight,int origin)
         {
