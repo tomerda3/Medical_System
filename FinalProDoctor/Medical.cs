@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
+using System.Runtime.InteropServices;
 
 namespace FinalProDoctor
 {
@@ -50,7 +52,6 @@ namespace FinalProDoctor
                 series.Points.Clear();
             }
 
-
             string sex;
             if (checkBox1.Checked)
                 sex = "male";
@@ -80,53 +81,6 @@ namespace FinalProDoctor
             richTextBox1.Clear();
             textBox5.Text = "";
 
-
-            /*          float WBC = 0;
-                        float Neut = 0;
-                        float Lymph = 0;
-                        float RBC = 0;
-                        float HCT = 0;
-                        float Urea = 0;
-                        float Hb = 0;
-                        float Crtn = 0;
-                        float Iron = 0;
-                        float HDL = 0;
-                        float AP = 0;
-
-                        try
-                        {
-                            // if
-                            // input blood test from excel.
-
-                            // else
-                            // input blood test from user.
-                            WBC = float.Parse(WBCBox.Text);
-                            Neut = float.Parse(NeutBox.Text);
-                            Lymph = float.Parse(LymphBox.Text);
-                            RBC = float.Parse(RBCBox.Text);
-                            HCT = float.Parse(HCTBox.Text);
-                            Urea = float.Parse(UreaBox.Text);
-                            Hb = float.Parse(HbBox.Text);
-                            Crtn = float.Parse(CrtnBox.Text);
-                            Iron = float.Parse(IronBox.Text);
-                            HDL = float.Parse(HDLBox.Text);
-                            AP = float.Parse(APBox.Text);
-
-                        }
-
-                        catch (FormatException e1)
-                        {
-                            textBox5.Text = "There is a problem in the input data";
-                        }
-
-                        if (patient1 == null)
-                        {
-                            MessageBox.Show("There is not patient");
-                            return;
-                        }
-                        if (patient1 != null)
-                            patient1.setBloodTest(WBC, Neut, Lymph, RBC, HCT, Urea, Hb, Crtn, Iron, HDL, AP);*/
-
             if (patient1 == null)
             {
                 MessageBox.Show("You need to add patient first");
@@ -149,7 +103,6 @@ namespace FinalProDoctor
             richTextBox1.SelectionAlignment = HorizontalAlignment.Right;
             richTextBox1.AppendText(" : שם המטופל " + patient1.name);
             richTextBox1.AppendText("\n : אבחון המטופל\n");
-            richTextBox1.AppendText("\n -------- patient1 HDL:" + patient1.HDL);
 
             if (patient1.age >= 18)
                 analysisForAdult();
@@ -157,6 +110,82 @@ namespace FinalProDoctor
                 analysisForChildren();
             if (patient1.age <= 3)
                 analysisForbaby();
+
+            Microsoft.Office.Interop.Excel.Application myexcelApplication = new Microsoft.Office.Interop.Excel.Application();
+            if (myexcelApplication != null)
+            {
+                Microsoft.Office.Interop.Excel.Workbook myexcelWorkbook = myexcelApplication.Workbooks.Add();
+                Microsoft.Office.Interop.Excel.Worksheet myexcelWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)myexcelWorkbook.Sheets.Add();
+
+                myexcelWorksheet.Cells[1, 1] = "First name";
+                myexcelWorksheet.Cells[1, 2] = "Last name";
+                myexcelWorksheet.Cells[1, 3] = "ID";
+                myexcelWorksheet.Cells[1, 4] = "Age";
+                myexcelWorksheet.Cells[1, 5] = "Gender";
+                myexcelWorksheet.Cells[1, 6] = "Smoking";
+                myexcelWorksheet.Cells[1, 7] = "Pragnent";
+                myexcelWorksheet.Cells[1, 8] = "Alergic";
+                myexcelWorksheet.Cells[1, 9] = "Height";
+                myexcelWorksheet.Cells[1, 10] = "Weight";
+                myexcelWorksheet.Cells[1, 11] = "Ethnic group";
+                myexcelWorksheet.Cells[1, 12] = "High fiver";
+                myexcelWorksheet.Cells[1, 13] = "Lung disease";
+                myexcelWorksheet.Cells[1, 14] = "Vomiting and diarrhea";
+                myexcelWorksheet.Cells[1, 15] = "WBC";
+                myexcelWorksheet.Cells[1, 16] = "Neut";
+                myexcelWorksheet.Cells[1, 17] = "RBC";
+                myexcelWorksheet.Cells[1, 18] = "HCT";
+                myexcelWorksheet.Cells[1, 19] = "Urea";
+                myexcelWorksheet.Cells[1, 20] = "Hb";
+                myexcelWorksheet.Cells[1, 21] = "Crtn";
+                myexcelWorksheet.Cells[1, 22] = "Iron";
+                myexcelWorksheet.Cells[1, 23] = "HDL";
+                myexcelWorksheet.Cells[1, 24] = "AP";
+                myexcelWorksheet.Cells[1, 25] = "Lymph";
+                myexcelWorksheet.Cells[1, 26] = "Diagnosis";
+                myexcelWorksheet.Cells[1, 27] = "Recommendation";
+
+
+                myexcelWorksheet.Cells[2, 1] = patient1.name;
+                //myexcelWorksheet.Cells[2, 2] = arrPat[i].getLastName();
+               // myexcelWorksheet.Cells[2, 3] = arrPat[i].getID();
+                myexcelWorksheet.Cells[2, 4] = patient1.age.ToString();
+                myexcelWorksheet.Cells[2, 5] = patient1.sex;
+                if(patient1.smoke == true)
+                    myexcelWorksheet.Cells[2, 6] = "Yes";
+                else myexcelWorksheet.Cells[2, 6] = "No";
+
+             // myexcelWorksheet.Cells[2, 7] = arrPat[i].getPreg().ToString();
+             //   myexcelWorksheet.Cells[2, 8] = arrPat[i].getAle().ToString();
+                myexcelWorksheet.Cells[2, 9] = arrPat[i].getHe();
+                myexcelWorksheet.Cells[2, 10] = arrPat[i].getWe();
+                myexcelWorksheet.Cells[2, 11] = arrPat[i].getGroup();
+                myexcelWorksheet.Cells[2, 12] = petFivercheckBox1.Text; //fiver
+                myexcelWorksheet.Cells[2, 13] = patLoDischeckBox2.Text; //lung
+                myexcelWorksheet.Cells[2, 14] = patVomcheckBox3.Text; //vomtimg
+                myexcelWorksheet.Cells[2, 15] = patient1.WBC.ToString();
+                myexcelWorksheet.Cells[2, 16] = patient1.Neut.ToString() + "%";
+                myexcelWorksheet.Cells[2, 17] = patient1.Lymph.ToString();
+                myexcelWorksheet.Cells[2, 18] = patient1.RBC.ToString() + "%";
+                myexcelWorksheet.Cells[2, 19] = patient1.HCT.ToString();
+                myexcelWorksheet.Cells[2, 20] = patient1.Urea.ToString();
+                myexcelWorksheet.Cells[2, 21] = patient1.Hb.ToString();
+                myexcelWorksheet.Cells[2, 22] = patient1.Crtn.ToString();
+                myexcelWorksheet.Cells[2, 23] = patient1.Iron.ToString();
+                myexcelWorksheet.Cells[2, 24] = patient1.HDL.ToString();
+                myexcelWorksheet.Cells[2, 24] = patient1.AP.ToString();
+
+                myexcelWorksheet.Cells[2, 25] = arrPat[i].getLy() + "%";
+                myexcelWorksheet.Cells[2, 26] = allDiag; //DIAG
+                myexcelWorksheet.Cells[2, 27] = allRec;//REC
+
+
+                myexcelApplication.ActiveWorkbook.SaveAs(@"C:\Users\Asus\OneDrive\Desktop\info.xls", Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal);
+
+                myexcelWorkbook.Close();
+                myexcelApplication.Quit();
+            }
+
         }
         public void setBlood(float WBC, float Neut, float Lymph, float RBC, float HCT, float Urea, float Hb, float Crtn, float Iron, float HDL, float AP)
         {
@@ -172,33 +201,57 @@ namespace FinalProDoctor
         public void analysisForAdult()
         {
             int count = 1;
+            int count2 = 1;
             if (11000 < patient1.WBC)
             {
                 richTextBox1.AppendText(count + ".ערך גבוה של כדורי דם לבנים יכולות להצביע על קיומו של זיהום, אם קיימת מחלת חום. במקרים אחרים, נדירים ביותר, עלולים ערכים גבוהים מאוד להעיד על מחלת דם או סרטן\n");
                 count++;
+                richTextBox2.AppendText("שילוב של ציקלופוספאמיד וקורטיקוסרואידים\n" + count2);
+                count2++;
+                richTextBox2.AppendText("אנטרקטיניב - Entrectinib\n" + count2);
+                count2++;
+                richTextBox2.AppendText("אנטיביוטיקה ייעודית\n" + count2);
+                count2++;
+
             }
             if (4500 > patient1.WBC)
             {
                 richTextBox1.AppendText(count + ". קיים ערך נמוך של כדורי דם לבנים היכול להצביע על מחלה ויראלית, כשל של מערכת החיסון ובמקרים נדירים ביותר על סרטן\n");
                 count++;
+                richTextBox2.AppendText("לנוח בבית\n" + count2);
+                count2++;
             }
 
             if (54 < patient1.Neut)
             {
                 richTextBox1.AppendText(count + ".ערך גבוה של נויטרופיל מעידים לרוב על זיהום חיידקי.\n");
                 count++;
+                richTextBox2.AppendText("אנטיביוטיקה ייעודית\n" + count2);
+                count2++;
             }
 
             if (28 < patient1.Neut)
             {
                 richTextBox1.AppendText(count + ".ערך נמוך של נויטרופיל מעידים על הפרעה ביצירת הדם, על נטייה לזיהומים מחיידקים ובמקרים נדירים - על תהליך סרטני.\n");
                 count++;
+                richTextBox2.AppendText("כדור 10 מג של בי-12 ביום למשך חודש, כדור 5 מג של חומצה פולית ביום למשך חודש \n" + count2);
+                count2++;
+                richTextBox2.AppendText("כדור 10 מג של בי-12 ביום למשך חודש, כדור 5 מג של חומצה פולית ביום למשך חודש \n" + count2);
+                count2++;
+                richTextBox2.AppendText("אנטיביוטיקה ייעודית\n" + count2);
+                count2++;
+                richTextBox2.AppendText("אנטרקטיניב - Entrectinib\n" + count2);
+                count2++;
             }
             
             if (52 < patient1.Lymph)
             {
                 richTextBox1.AppendText(count + ".ערך גבוה של לימפוציטים עשויים להצביע על זיהום חיידקי ממושך או על סרטן הלימפומה.\n");
                 count++;
+                richTextBox2.AppendText("אנטיביוטיקה ייעודית\n" + count2);
+                count2++;
+                richTextBox2.AppendText("אנטרקטיניב - Entrectinib\n" + count2);
+                count2++;
             }
 
             if (36 < patient1.Lymph)
@@ -210,12 +263,22 @@ namespace FinalProDoctor
             {
                 richTextBox1.AppendText(count + ".קיים ערך גבוה של כדוריות הדם האדומות אחראיות על קשירת חמצן מהריאות עלולים להצביע על הפרעה במערכת ייצור הדם. רמות גבוהות נצפו גם אצל מעשנים ואצל חולים במחלת ריאות.\n");
                 count++;
+                richTextBox2.AppendText("כדור 10 מג של בי-12 ביום למשך חודש, כדור 5 מג של חומצה פולית ביום למשך חודש \n" + count2);
+                count2++;
+                richTextBox2.AppendText("להפסיק לעשן \n" + count2);
+                count2++;
+                richTextBox2.AppendText("הפניה לצילום רנטגן של הראות \n" + count2);
+                count2++;
             }
 
             if (4.5 < patient1.RBC)
             {
                 richTextBox1.AppendText(count + ".קיים ערך נמוך של כדוריות הדם האדומות אחראיות על קשירת חמצן מהריאות העלולים להצביע על אנמיה או על דימומים קשים.\n");
                 count++;
+                richTextBox2.AppendText("שני כדורי 10 מג של בי-12 ביום למשך חודש \n" + count2);
+                count2++;
+                richTextBox2.AppendText("להתפנות בדחיפות לבית החולים \n" + count2);
+                count2++;
             }
             if (6 < patient1.HCT || 4 > patient1.HCT)
             {
@@ -225,11 +288,16 @@ namespace FinalProDoctor
                     {
                         richTextBox1.AppendText(count + ".קיים ערך גבוה של נפח כדוריות הדם האדומות  דבר זה שכיח בדרך כלל אצל מעשנים.\n");
                         count++;
+
                     }
                     if (37 > patient1.HCT)
                     {
                         richTextBox1.AppendText(count + ".קיים ערך נמוך של נפח כדוריות הדם האדומות אשר מצביע לרוב על דימום או על אנמיה.\n");
                         count++;
+                        richTextBox2.AppendText("שני כדורי 10 מג של בי-12 ביום למשך חודש \n" + count2);
+                        count2++;
+                        richTextBox2.AppendText("להתפנות בדחיפות לבית חולים \n" + count2);
+                        count2++;
                     }
                 }
                 else
@@ -243,6 +311,10 @@ namespace FinalProDoctor
                     {
                         richTextBox1.AppendText(count + ".קיים ערך נמוך של נפח כדוריות הדם האדומות אשר מצביע לרוב על דימום או על אנמיה.\n");
                         count++;
+                        richTextBox2.AppendText("שני כדורי 10 מג של בי-12 ביום למשך חודש \n" + count2);
+                        count2++;
+                        richTextBox2.AppendText("להתפנות בדחיפות לבית חולים \n" + count2);
+                        count2++;
                     }
                 }
             }
@@ -253,11 +325,23 @@ namespace FinalProDoctor
                 {
                     richTextBox1.AppendText(count + ".קיים ערך גבוה של רמת השתנן בדם אשר עלולים להצביע על מחלות כליה, התייבשות או דיאטה עתירת חלבונים.\n");
                     count++;
+                    richTextBox2.AppendText("לתאם פגישה עם תזונאי \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText("מנוחה מוחלטת בשכיבה, החזרת נוזלים בשתייה \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText("איזון רמות הסוכר בדם \n" + count2);
+                    count2++;
                 }
                 else
                 {
                     richTextBox1.AppendText(count + ".קיים ערך גבוה של רמת השתנן בדם אשר עלולים להצביע על מחלות כליה, התייבשות או דיאטה עתירת חלבונים.\n");
                     count++;
+                    richTextBox2.AppendText("לתאם פגישה עם תזונאי \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText("מנוחה מוחלטת בשכיבה, החזרת נוזלים בשתייה \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText("איזון רמות הסוכר בדם \n" + count2);
+                    count2++;
                 }
 
             }
@@ -267,11 +351,19 @@ namespace FinalProDoctor
                 {
                     richTextBox1.AppendText(count + ".קיים ערך נמוך של רמת השתנן בדם אשר מצביעים על  תת תזונה, דיאטה דלת חלבון או מחלת כבד. יש לציין שבהריון רמת השתנן יורדת.\n");
                     count++;
+                    richTextBox2.AppendText("לתאם פגישה עם תזונאי \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText("הפניה לאבחנה ספציפית לצורך קביעת טיפול \n" + count2);
+                    count2++;
                 }
                 else
                 {
                     richTextBox1.AppendText(count + ".קיים ערך נמוך של רמת השתנן בדם אשר מצביעים על  תת תזונה, דיאטה דלת חלבון או מחלת כבד. יש לציין שבהריון רמת השתנן יורדת.\n");
                     count++;
+                    richTextBox2.AppendText("לתאם פגישה עם תזונאי \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText("הפניה לאבחנה ספציפית לצורך קביעת טיפול \n" + count2);
+                    count2++;
                 }
             }
 
@@ -287,6 +379,12 @@ namespace FinalProDoctor
                 {
                     richTextBox1.AppendText(count + ".קיים ערך נמוך של מוגלובין אשר מעידים על אנמיה.זו יכולה לנבוע מהפרעה המטולוגית, ממחסור בברזל ומדימומים.\n");
                     count++;
+                    richTextBox2.AppendText("שני כדורי 10 מג של בי-12 ביום למשך חודש \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText("להתפנות בדחיפות לבית חולים \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText("זריקה של הורמון לעידוד ייצור תאי הדם האדומים \n" + count2);
+                    count2++;
                 }
             }
             else
@@ -300,6 +398,12 @@ namespace FinalProDoctor
                 {
                     richTextBox1.AppendText(count + ".קיים ערך נמוך של מוגלובין אשר מעידים על אנמיה.זו יכולה לנבוע מהפרעה המטולוגית, ממחסור בברזל ומדימומים.\n");
                     count++;
+                    richTextBox2.AppendText("שני כדורי 10 מג של בי-12 ביום למשך חודש \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText("להתפנות בדחיפות לבית חולים \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText("זריקה של הורמון לעידוד ייצור תאי הדם האדומים \n" + count2);
+                    count2++;
                 }
             }
 
@@ -309,38 +413,56 @@ namespace FinalProDoctor
                 {
                     richTextBox1.AppendText(count + ". קיים ערך גבוה של קריטאינין ערכים גבוהים מהנורמה עלולים להצביע על בעיה כלייתית ובמקרים חמורים על אי ספיקת כליות. ערכים גבוהים ניתן למצוא גם בעת שלשולים והקאות (הגורמים לפירוק מוגבר של שריר ולערכים גבוהים של קריאטינין), מחלות שריר וצריכה מוגברת של בשר.\n");
                     count++;
+                    richTextBox2.AppendText("שני כדורי 5 מג של כורכום כי-3 של אלטמן ביום למשך חודש \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText("לתאם פגישה עם תזונאית \n" + count2);
+                    count2++;
                 }
                 if (0.6 > patient1.Crtn)
                 {
                     richTextBox1.AppendText(count + ".קיים ערך נמוך של קריטאינין אשר נראים לרוב בחולים בעלי מסת שריר ירודה מאוד ואנשים בתת תזונה שאינם צורכים די חלבון.\n");
                     count++;
+                    richTextBox2.AppendText("לתאם פגישה עם תזונאית \n" + count2);
+                    count2++;
                 }
             }
             else
             {
-                if (0.6 < patient1.Crtn)
+                if (1 < patient1.Crtn)
                 {
                     richTextBox1.AppendText(count + ". קיים ערך גבוה של קריטאינין ערכים גבוהים מהנורמה עלולים להצביע על בעיה כלייתית ובמקרים חמורים על אי ספיקת כליות. ערכים גבוהים ניתן למצוא גם בעת שלשולים והקאות (הגורמים לפירוק מוגבר של שריר ולערכים גבוהים של קריאטינין), מחלות שריר וצריכה מוגברת של בשר.\n");
                     count++;
+                    richTextBox2.AppendText("שני כדורי 5 מג של כורכום כי-3 של אלטמן ביום למשך חודש \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText("לתאם פגישה עם תזונאית \n" + count2);
+                    count2++;
                 }
-                if (1 > patient1.Crtn)
+                if (0.6 > patient1.Crtn)
                 {
                     richTextBox1.AppendText(count + ".קיים ערך נמוך של קריטאינין אשר נראים לרוב בחולים בעלי מסת שריר ירודה מאוד ואנשים בתת תזונה שאינם צורכים די חלבון.\n");
                     count++;
+                    richTextBox2.AppendText("לתאם פגישה עם תזונאית \n" + count2);
+                    count2++;
                 }
             }
 
             if (patient1.sex == "man")
             {
-                if (60 < patient1.Iron)
+                if (160 < patient1.Iron)
                 {
                     richTextBox1.AppendText(count + ". קיים ערך גבוה של ברזל ערכים גבוהים עלולים להצביע על הרעלת ברזל. \n");
                     count++;
+                    richTextBox2.AppendText(" להתפנות לבית חולים \n" + count2);
+                    count2++;
                 }
-                if (160 > patient1.Iron)
+                if (60 > patient1.Iron)
                 {
                     richTextBox1.AppendText(count + ". קיים ערך נמוך של ברזל אשר מעיד בדרך כלל על תזונה לא מספקת או על עלייה בצורך בברזל (למשל בהריון) או על איבוד דם בעקבות דימום. \n");
                     count++;
+                    richTextBox2.AppendText(" להתפנות לבית חולים \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText("שני כדורי 10 מג של בי-12 ביום למשך חודש \n" + count2);
+                    count2++;
                 }
             }
             else
@@ -349,16 +471,22 @@ namespace FinalProDoctor
                 {
                     richTextBox1.AppendText(count + ". קיים ערך גבוה של ברזל ערכים גבוהים עלולים להצביע על הרעלת ברזל. \n");
                     count++;
+                    richTextBox2.AppendText(" להתפנות לבית חולים \n" + count2);
+                    count2++;
                 }
                 if (48 > patient1.Iron)
                 {
                     richTextBox1.AppendText(count + ". קיים ערך נמוך של ברזל אשר מעיד בדרך כלל על תזונה לא מספקת או על עלייה בצורך בברזל (למשל בהריון) או על איבוד דם בעקבות דימום. \n");
                     count++;
+                    richTextBox2.AppendText(" להתפנות לבית חולים \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText("שני כדורי 10 מג של בי-12 ביום למשך חודש \n" + count2);
+                    count2++;
                 }
             }
             if (patient1.sex == "man")
             {
-              
+                
                 if (62 < patient1.HDL)
                 {
                     if(patient1.origin == 0 && 74.4 < patient1.HDL)
@@ -373,6 +501,10 @@ namespace FinalProDoctor
                     {
                         richTextBox1.AppendText(count + ". קיים ערך נמוך של 'הכולסטרול הטוב', הינו מולקולה דמוית חלבון ערכים נמוכים עשויים להצביע על סיכון למחלות לב, על היפרליפידמיה )יתר שומנים בדם( או על סוכרת מבוגרים . \n");
                         count++;
+                        richTextBox2.AppendText(" לתאם פגישה עם תזונאי, כדור 5 מג של סימוביל ביום למשך שבוע \n" + count2);
+                        count2++;
+                        richTextBox2.AppendText(" התאמת אינסולין למטופל \n" + count2);
+                        count2++;
                     }
                 }
             }
@@ -387,6 +519,10 @@ namespace FinalProDoctor
                 {
                     richTextBox1.AppendText(count + ". קיים ערך נמוך של 'הכולסטרול הטוב', הינו מולקולה דמוית חלבון ערכים נמוכים עשויים להצביע על סיכון למחלות לב, על היפרליפידמיה )יתר שומנים בדם( או על סוכרת מבוגרים . \n");
                     count++;
+                    richTextBox2.AppendText(" לתאם פגישה עם תזונאי, כדור 5 מג של סימוביל ביום למשך שבוע \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText(" התאמת אינסולין למטופל \n" + count2);
+                    count2++;
                 }
             }
             if (patient1.origin == 2)
@@ -395,11 +531,19 @@ namespace FinalProDoctor
                 {
                     richTextBox1.AppendText(count + ". קיים ערך גבוה של פוסםטזה אלקלית עלול להצביע על מחלות כבד, מחלות בדרכי המרה, הריון, פעילות יתר של בלוטת התריס או שימוש בתרופות שונות. \n");
                     count++;
+                    richTextBox2.AppendText(" הפניה לטיופל חירוגי \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText(" הפניה לרופא המשפחה לצורך התאמה בין התרופות \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText(" Propylthiouracil להקטנת פעילות בלוטת התריס \n" + count2);
+                    count2++;
                 }
                 if (60 > patient1.AP)
                 {
                     richTextBox1.AppendText(count + ". ויטמין B6 חומצה פולית. ,B12ויטמין ,C  קיים ערך נמוך של פוסםטזה אלקלית עלול להצביע על על תזונה לקויה שחסרים בה חלבונים. חוסר בוויטמינים כמו ויטמין . \n");
                     count++;
+                    richTextBox2.AppendText(" הפניה לבדיקת דם לזיהוי הויטמינים החסרים  \n" + count2);
+                    count2++;
                 }
             }
             else
@@ -408,21 +552,36 @@ namespace FinalProDoctor
                 {
                     richTextBox1.AppendText(count + ". קיים ערך גבוה של פוסםטזה אלקלית עלול להצביע על מחלות כבד, מחלות בדרכי המרה, הריון, פעילות יתר של בלוטת התריס או שימוש בתרופות שונות. \n");
                     count++;
+                    richTextBox2.AppendText(" הפניה לטיופל חירוגי \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText(" הפניה לרופא המשפחה לצורך התאמה בין התרופות \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText(" Propylthiouracil להקטנת פעילות בלוטת התריס \n" + count2);
+                    count2++;
                 }
                 if (30 > patient1.AP)
                 {
                     richTextBox1.AppendText(count + ". ויטמין B6 חומצה פולית. ,B12ויטמין ,C  קיים ערך נמוך של פוסםטזה אלקלית עלול להצביע על על תזונה לקויה שחסרים בה חלבונים. חוסר בוויטמינים כמו ויטמין . \n");
                     count++;
+                    richTextBox2.AppendText(" הפניה לבדיקת דם לזיהוי הויטמינים החסרים  \n" + count2);
+                    count2++;
                 }
             }
         }
         public void analysisForChildren()
         {
             int count = 1;
+            int count2 = 1;
             if (15500 > patient1.WBC)
             {
                 richTextBox1.AppendText(count + ".ות על קיומו של זיהום, אם קיימת מחלת חום. במקרים אחרים, נדירים ביותר, עלולים ערכים גבוהים מאוד להעיד על מחלת דם או סרטן\n");
                 count++;
+                richTextBox2.AppendText("שילוב של ציקלופוספאמיד וקורטיקוסרואידים\n" + count2);
+                count2++;
+                richTextBox2.AppendText("אנטרקטיניב - Entrectinib\n" + count2);
+                count2++;
+                richTextBox2.AppendText("אנטיביוטיקה ייעודית\n" + count2);
+                count2++;
             }
             if (5500 < patient1.WBC)
             {
@@ -434,18 +593,32 @@ namespace FinalProDoctor
             {
                 richTextBox1.AppendText(count + ".ערך גבוה של נויטרופיל מעידים לרוב על זיהום חיידקי.\n");
                 count++;
+                richTextBox2.AppendText("אנטיביוטיקה ייעודית\n" + count2);
+                count2++;
             }
 
             if (28 < patient1.Neut)
             {
                 richTextBox1.AppendText(count + ".ערך נמוך של נויטרופיל מעידים על הפרעה ביצירת הדם, על נטייה לזיהומים מחיידקים ובמקרים נדירים - על תהליך סרטני.\n");
                 count++;
+                richTextBox2.AppendText("כדור 10 מג של בי-12 ביום למשך חודש, כדור 5 מג של חומצה פולית ביום למשך חודש \n" + count2);
+                count2++;
+                richTextBox2.AppendText("כדור 10 מג של בי-12 ביום למשך חודש, כדור 5 מג של חומצה פולית ביום למשך חודש \n" + count2);
+                count2++;
+                richTextBox2.AppendText("אנטיביוטיקה ייעודית\n" + count2);
+                count2++;
+                richTextBox2.AppendText("אנטרקטיניב - Entrectinib\n" + count2);
+                count2++;
             }
 
             if (52 < patient1.Lymph)
             {
                 richTextBox1.AppendText(count + ".ערך גבוה של לימפוציטים עשויים להצביע על זיהום חיידקי ממושך או על סרטן הלימפומה.\n");
                 count++;
+                richTextBox2.AppendText("אנטיביוטיקה ייעודית\n" + count2);
+                count2++;
+                richTextBox2.AppendText("אנטרקטיניב - Entrectinib\n" + count2);
+                count2++;
             }
 
             if (36 < patient1.Lymph)
@@ -457,12 +630,22 @@ namespace FinalProDoctor
             {
                 richTextBox1.AppendText(count + ".קיים ערך גבוה של כדוריות הדם האדומות אחראיות על קשירת חמצן מהריאות עלולים להצביע על הפרעה במערכת ייצור הדם. רמות גבוהות נצפו גם אצל מעשנים ואצל חולים במחלת ריאות.\n");
                 count++;
+                richTextBox2.AppendText("כדור 10 מג של בי-12 ביום למשך חודש, כדור 5 מג של חומצה פולית ביום למשך חודש \n" + count2);
+                count2++;
+                richTextBox2.AppendText("להפסיק לעשן \n" + count2);
+                count2++;
+                richTextBox2.AppendText("הפניה לצילום רנטגן של הראות \n" + count2);
+                count2++;
             }
 
             if (4.5 < patient1.RBC)
             {
                 richTextBox1.AppendText(count + ".קיים ערך נמוך של כדוריות הדם האדומות אחראיות על קשירת חמצן מהריאות העלולים להצביע על אנמיה או על דימומים קשים.\n");
                 count++;
+                richTextBox2.AppendText("שני כדורי 10 מג של בי-12 ביום למשך חודש \n" + count2);
+                count2++;
+                richTextBox2.AppendText("להתפנות בדחיפות לבית החולים \n" + count2);
+                count2++;
             }
             if (6 < patient1.HCT || 4 > patient1.HCT)
             {
@@ -477,6 +660,10 @@ namespace FinalProDoctor
                     {
                         richTextBox1.AppendText(count + ".קיים ערך נמוך של נפח כדוריות הדם האדומות אשר מצביע לרוב על דימום או על אנמיה.\n");
                         count++;
+                        richTextBox2.AppendText("שני כדורי 10 מג של בי-12 ביום למשך חודש \n" + count2);
+                        count2++;
+                        richTextBox2.AppendText("להתפנות בדחיפות לבית חולים \n" + count2);
+                        count2++;
                     }
                 }
                 else
@@ -490,6 +677,10 @@ namespace FinalProDoctor
                     {
                         richTextBox1.AppendText(count + ".קיים ערך נמוך של נפח כדוריות הדם האדומות אשר מצביע לרוב על דימום או על אנמיה.\n");
                         count++;
+                        richTextBox2.AppendText("שני כדורי 10 מג של בי-12 ביום למשך חודש \n" + count2);
+                        count2++;
+                        richTextBox2.AppendText("להתפנות בדחיפות לבית חולים \n" + count2);
+                        count2++;
                     }
                 }
             }
@@ -499,11 +690,19 @@ namespace FinalProDoctor
                 {
                     richTextBox1.AppendText(count + ".קיים ערך גבוה של רמת השתנן בדם אשר עלולים להצביע על מחלות כליה, התייבשות או דיאטה עתירת חלבונים.\n");
                     count++;
+                    richTextBox2.AppendText("לתאם פגישה עם תזונאי \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText("הפניה לאבחנה ספציפית לצורך קביעת טיפול \n" + count2);
+                    count2++;
                 }
                 else
                 {
                     richTextBox1.AppendText(count + ".קיים ערך גבוה של רמת השתנן בדם אשר עלולים להצביע על מחלות כליה, התייבשות או דיאטה עתירת חלבונים.\n");
                     count++;
+                    richTextBox2.AppendText("לתאם פגישה עם תזונאי \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText("הפניה לאבחנה ספציפית לצורך קביעת טיפול \n" + count2);
+                    count2++;
                 }
 
             }
@@ -513,11 +712,19 @@ namespace FinalProDoctor
                 {
                     richTextBox1.AppendText(count + ".קיים ערך נמוך של רמת השתנן בדם אשר מצביעים על  תת תזונה, דיאטה דלת חלבון או מחלת כבד. יש לציין שבהריון רמת השתנן יורדת.\n");
                     count++;
+                    richTextBox2.AppendText("לתאם פגישה עם תזונאי \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText("הפניה לאבחנה ספציפית לצורך קביעת טיפול \n" + count2);
+                    count2++;
                 }
                 else
                 {
                     richTextBox1.AppendText(count + ".קיים ערך נמוך של רמת השתנן בדם אשר מצביעים על  תת תזונה, דיאטה דלת חלבון או מחלת כבד. יש לציין שבהריון רמת השתנן יורדת.\n");
                     count++;
+                    richTextBox2.AppendText("לתאם פגישה עם תזונאי \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText("הפניה לאבחנה ספציפית לצורך קביעת טיפול \n" + count2);
+                    count2++;
                 }
             }
 
@@ -530,16 +737,28 @@ namespace FinalProDoctor
             {
                 richTextBox1.AppendText(count + ".קיים ערך נמוך של מוגלובין אשר מעידים על אנמיה.זו יכולה לנבוע מהפרעה המטולוגית, ממחסור בברזל ומדימומים.\n");
                 count++;
+                richTextBox2.AppendText("שני כדורי 10 מג של בי-12 ביום למשך חודש \n" + count2);
+                count2++;
+                richTextBox2.AppendText("להתפנות בדחיפות לבית חולים \n" + count2);
+                count2++;
+                richTextBox2.AppendText("זריקה של הורמון לעידוד ייצור תאי הדם האדומים \n" + count2);
+                count2++;
             }
             if (1 < patient1.Crtn)
             {
                 richTextBox1.AppendText(count + ". קיים ערך גבוה של קריטאינין ערכים גבוהים מהנורמה עלולים להצביע על בעיה כלייתית ובמקרים חמורים על אי ספיקת כליות. ערכים גבוהים ניתן למצוא גם בעת שלשולים והקאות (הגורמים לפירוק מוגבר של שריר ולערכים גבוהים של קריאטינין), מחלות שריר וצריכה מוגברת של בשר.\n");
                 count++;
+                richTextBox2.AppendText("שני כדורי 5 מג של כורכום כי-3 של אלטמן ביום למשך חודש \n" + count2);
+                count2++;
+                richTextBox2.AppendText("לתאם פגישה עם תזונאית \n" + count2);
+                count2++;
             }
             if (0.5 > patient1.Crtn)
             {
                 richTextBox1.AppendText(count + ".קיים ערך נמוך של קריטאינין אשר נראים לרוב בחולים בעלי מסת שריר ירודה מאוד ואנשים בתת תזונה שאינם צורכים די חלבון.\n");
                 count++;
+                richTextBox2.AppendText("לתאם פגישה עם תזונאית \n" + count2);
+                count2++;
             }
             if (patient1.sex == "man")
             {
@@ -547,11 +766,17 @@ namespace FinalProDoctor
                 {
                     richTextBox1.AppendText(count + ". קיים ערך גבוה של ברזל ערכים גבוהים עלולים להצביע על הרעלת ברזל. \n");
                     count++;
+                    richTextBox2.AppendText(" להתפנות לבית חולים \n" + count2);
+                    count2++;
                 }
                 if (60 > patient1.Iron)
                 {
                     richTextBox1.AppendText(count + ". קיים ערך נמוך של ברזל אשר מעיד בדרך כלל על תזונה לא מספקת או על עלייה בצורך בברזל (למשל בהריון) או על איבוד דם בעקבות דימום. \n");
                     count++;
+                    richTextBox2.AppendText(" להתפנות לבית חולים \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText("שני כדורי 10 מג של בי-12 ביום למשך חודש \n" + count2);
+                    count2++;
                 }
             }
             else
@@ -560,6 +785,8 @@ namespace FinalProDoctor
                 {
                     richTextBox1.AppendText(count + ". קיים ערך גבוה של ברזל ערכים גבוהים עלולים להצביע על הרעלת ברזל. \n");
                     count++;
+                    richTextBox2.AppendText(" להתפנות לבית חולים \n" + count2);
+                    count2++;
                 }
                 if (48 > patient1.Iron)
                 {
@@ -583,6 +810,19 @@ namespace FinalProDoctor
                     {
                         richTextBox1.AppendText(count + ". קיים ערך נמוך של 'הכולסטרול הטוב', הינו מולקולה דמוית חלבון ערכים נמוכים עשויים להצביע על סיכון למחלות לב, על היפרליפידמיה )יתר שומנים בדם( או על סוכרת מבוגרים . \n");
                         count++;
+                        richTextBox2.AppendText(" לתאם פגישה עם תזונאי, כדור 5 מג של סימוביל ביום למשך שבוע \n" + count2);
+                        count2++;
+                        richTextBox2.AppendText(" התאמת אינסולין למטופל \n" + count2);
+                        count2++;
+                    }
+                    else
+                    {
+                        richTextBox1.AppendText(count + ". קיים ערך נמוך של 'הכולסטרול הטוב', הינו מולקולה דמוית חלבון ערכים נמוכים עשויים להצביע על סיכון למחלות לב, על היפרליפידמיה )יתר שומנים בדם( או על סוכרת מבוגרים . \n");
+                        count++;
+                        richTextBox2.AppendText(" לתאם פגישה עם תזונאי, כדור 5 מג של סימוביל ביום למשך שבוע \n" + count2);
+                        count2++;
+                        richTextBox2.AppendText(" התאמת אינסולין למטופל \n" + count2);
+                        count2++;
                     }
                 }
             }
@@ -597,6 +837,10 @@ namespace FinalProDoctor
                 {
                     richTextBox1.AppendText(count + ". קיים ערך נמוך של 'הכולסטרול הטוב', הינו מולקולה דמוית חלבון ערכים נמוכים עשויים להצביע על סיכון למחלות לב, על היפרליפידמיה )יתר שומנים בדם( או על סוכרת מבוגרים . \n");
                     count++;
+                    richTextBox2.AppendText(" לתאם פגישה עם תזונאי, כדור 5 מג של סימוביל ביום למשך שבוע \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText(" התאמת אינסולין למטופל \n" + count2);
+                    count2++;
                 }
             }
             if (patient1.origin == 2)
@@ -605,11 +849,19 @@ namespace FinalProDoctor
                 {
                     richTextBox1.AppendText(count + ". קיים ערך גבוה של פוסםטזה אלקלית עלול להצביע על מחלות כבד, מחלות בדרכי המרה, הריון, פעילות יתר של בלוטת התריס או שימוש בתרופות שונות. \n");
                     count++;
+                    richTextBox2.AppendText(" הפניה לטיופל חירוגי \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText(" הפניה לרופא המשפחה לצורך התאמה בין התרופות \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText(" Propylthiouracil להקטנת פעילות בלוטת התריס \n" + count2);
+                    count2++;
                 }
                 if (60 > patient1.AP)
                 {
                     richTextBox1.AppendText(count + ". ויטמין B6 חומצה פולית. ,B12ויטמין ,C  קיים ערך נמוך של פוסםטזה אלקלית עלול להצביע על על תזונה לקויה שחסרים בה חלבונים. חוסר בוויטמינים כמו ויטמין . \n");
                     count++;
+                    richTextBox2.AppendText(" הפניה לבדיקת דם לזיהוי הויטמינים החסרים  \n" + count2);
+                    count2++;
                 }
             }
             else
@@ -618,44 +870,76 @@ namespace FinalProDoctor
                 {
                     richTextBox1.AppendText(count + ". קיים ערך גבוה של פוסםטזה אלקלית עלול להצביע על מחלות כבד, מחלות בדרכי המרה, הריון, פעילות יתר של בלוטת התריס או שימוש בתרופות שונות. \n");
                     count++;
+                    richTextBox2.AppendText(" הפניה לטיופל חירוגי \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText(" הפניה לרופא המשפחה לצורך התאמה בין התרופות \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText(" Propylthiouracil להקטנת פעילות בלוטת התריס \n" + count2);
+                    count2++;
                 }
                 if (30 > patient1.AP)
                 {
                     richTextBox1.AppendText(count + ". ויטמין B6 חומצה פולית. ,B12ויטמין ,C  קיים ערך נמוך של פוסםטזה אלקלית עלול להצביע על על תזונה לקויה שחסרים בה חלבונים. חוסר בוויטמינים כמו ויטמין . \n");
                     count++;
+                    richTextBox2.AppendText(" הפניה לבדיקת דם לזיהוי הויטמינים החסרים  \n" + count2);
+                    count2++;
                 }
             }
         }
         public void analysisForbaby()
         {
             int count = 1;
+            int count2 = 1;
             if (17500 > patient1.WBC)
             {
                 richTextBox1.AppendText(count + ".ות על קיומו של זיהום, אם קיימת מחלת חום. במקרים אחרים, נדירים ביותר, עלולים ערכים גבוהים מאוד להעיד על מחלת דם או סרטן\n");
                 count++;
+                richTextBox2.AppendText("שילוב של ציקלופוספאמיד וקורטיקוסרואידים\n" + count2);
+                count2++;
+                richTextBox2.AppendText("אנטרקטיניב - Entrectinib\n" + count2);
+                count2++;
+                richTextBox2.AppendText("אנטיביוטיקה ייעודית\n" + count2);
+                count2++;
             }
             if (6000 < patient1.WBC)
             {
                 richTextBox1.AppendText(count + ". קיים ערך נמוך של כדורי דם לבנים היכול להצביע על מחלה ויראלית, כשל של מערכת החיסון ובמקרים נדירים ביותר על סרטן\n");
                 count++;
+                richTextBox2.AppendText("לנוח בבית\n" + count2);
+                count2++;
             }
 
             if (54 < patient1.Neut)
             {
                 richTextBox1.AppendText(count + ".ערך גבוה של נויטרופיל מעידים לרוב על זיהום חיידקי.\n");
                 count++;
+                richTextBox2.AppendText("אנטיביוטיקה ייעודית\n" + count2);
+                count2++;
+
             }
 
             if (28 < patient1.Neut)
             {
                 richTextBox1.AppendText(count + ".ערך נמוך של נויטרופיל מעידים על הפרעה ביצירת הדם, על נטייה לזיהומים מחיידקים ובמקרים נדירים - על תהליך סרטני.\n");
                 count++;
+                richTextBox2.AppendText("כדור 10 מג של בי-12 ביום למשך חודש, כדור 5 מג של חומצה פולית ביום למשך חודש \n" + count2);
+                count2++;
+                richTextBox2.AppendText("כדור 10 מג של בי-12 ביום למשך חודש, כדור 5 מג של חומצה פולית ביום למשך חודש \n" + count2);
+                count2++;
+                richTextBox2.AppendText("אנטיביוטיקה ייעודית\n" + count2);
+                count2++;
+                richTextBox2.AppendText("אנטרקטיניב - Entrectinib\n" + count2);
+                count2++;
             }
 
             if (52 < patient1.Lymph)
             {
                 richTextBox1.AppendText(count + ".ערך גבוה של לימפוציטים עשויים להצביע על זיהום חיידקי ממושך או על סרטן הלימפומה.\n");
                 count++;
+                richTextBox2.AppendText("אנטיביוטיקה ייעודית\n" + count2);
+                count2++;
+                richTextBox2.AppendText("אנטרקטיניב - Entrectinib\n" + count2);
+                count2++;
             }
 
             if (36 < patient1.Lymph)
@@ -666,12 +950,22 @@ namespace FinalProDoctor
             {
                 richTextBox1.AppendText(count + ".קיים ערך גבוה של כדוריות הדם האדומות אחראיות על קשירת חמצן מהריאות עלולים להצביע על הפרעה במערכת ייצור הדם. רמות גבוהות נצפו גם אצל מעשנים ואצל חולים במחלת ריאות.\n");
                 count++;
+                richTextBox2.AppendText("כדור 10 מג של בי-12 ביום למשך חודש, כדור 5 מג של חומצה פולית ביום למשך חודש \n" + count2);
+                count2++;
+                richTextBox2.AppendText("להפסיק לעשן \n" + count2);
+                count2++;
+                richTextBox2.AppendText("הפניה לצילום רנטגן של הראות \n" + count2);
+                count2++;
             }
 
             if (4.5 < patient1.RBC)
             {
                 richTextBox1.AppendText(count + ".קיים ערך נמוך של כדוריות הדם האדומות אחראיות על קשירת חמצן מהריאות העלולים להצביע על אנמיה או על דימומים קשים.\n");
                 count++;
+                richTextBox2.AppendText("שני כדורי 10 מג של בי-12 ביום למשך חודש \n" + count2);
+                count2++;
+                richTextBox2.AppendText("להתפנות בדחיפות לבית החולים \n" + count2);
+                count2++;
             }
             if (6 < patient1.HCT || 4 > patient1.HCT)
             {
@@ -686,6 +980,10 @@ namespace FinalProDoctor
                     {
                         richTextBox1.AppendText(count + ".קיים ערך נמוך של נפח כדוריות הדם האדומות אשר מצביע לרוב על דימום או על אנמיה.\n");
                         count++;
+                        richTextBox2.AppendText("שני כדורי 10 מג של בי-12 ביום למשך חודש \n" + count2);
+                        count2++;
+                        richTextBox2.AppendText("להתפנות בדחיפות לבית חולים \n" + count2);
+                        count2++;
                     }
                 }
                 else
@@ -699,6 +997,10 @@ namespace FinalProDoctor
                     {
                         richTextBox1.AppendText(count + ".קיים ערך נמוך של נפח כדוריות הדם האדומות אשר מצביע לרוב על דימום או על אנמיה.\n");
                         count++;
+                        richTextBox2.AppendText("שני כדורי 10 מג של בי-12 ביום למשך חודש \n" + count2);
+                        count2++;
+                        richTextBox2.AppendText("להתפנות בדחיפות לבית חולים \n" + count2);
+                        count2++;
                     }
                 }
             }
@@ -708,11 +1010,19 @@ namespace FinalProDoctor
                 {
                     richTextBox1.AppendText(count + ".קיים ערך גבוה של רמת השתנן בדם אשר עלולים להצביע על מחלות כליה, התייבשות או דיאטה עתירת חלבונים.\n");
                     count++;
+                    richTextBox2.AppendText("לתאם פגישה עם תזונאי \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText("הפניה לאבחנה ספציפית לצורך קביעת טיפול \n" + count2);
+                    count2++;
                 }
                 else
                 {
                     richTextBox1.AppendText(count + ".קיים ערך גבוה של רמת השתנן בדם אשר עלולים להצביע על מחלות כליה, התייבשות או דיאטה עתירת חלבונים.\n");
                     count++;
+                    richTextBox2.AppendText("לתאם פגישה עם תזונאי \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText("הפניה לאבחנה ספציפית לצורך קביעת טיפול \n" + count2);
+                    count2++;
                 }
 
             }
@@ -722,11 +1032,19 @@ namespace FinalProDoctor
                 {
                     richTextBox1.AppendText(count + ".קיים ערך נמוך של רמת השתנן בדם אשר מצביעים על  תת תזונה, דיאטה דלת חלבון או מחלת כבד. יש לציין שבהריון רמת השתנן יורדת.\n");
                     count++;
+                    richTextBox2.AppendText("לתאם פגישה עם תזונאי \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText("הפניה לאבחנה ספציפית לצורך קביעת טיפול \n" + count2);
+                    count2++;
                 }
                 else
                 {
                     richTextBox1.AppendText(count + ".קיים ערך נמוך של רמת השתנן בדם אשר מצביעים על  תת תזונה, דיאטה דלת חלבון או מחלת כבד. יש לציין שבהריון רמת השתנן יורדת.\n");
                     count++;
+                    richTextBox2.AppendText("לתאם פגישה עם תזונאי \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText("הפניה לאבחנה ספציפית לצורך קביעת טיפול \n" + count2);
+                    count2++;
                 }
             }
             if (15.5 < patient1.Hb)
@@ -738,28 +1056,46 @@ namespace FinalProDoctor
             {
                 richTextBox1.AppendText(count + ".קיים ערך נמוך של מוגלובין אשר מעידים על אנמיה.זו יכולה לנבוע מהפרעה המטולוגית, ממחסור בברזל ומדימומים.\n");
                 count++;
+                richTextBox2.AppendText("שני כדורי 10 מג של בי-12 ביום למשך חודש \n" + count2);
+                count2++;
+                richTextBox2.AppendText("להתפנות בדחיפות לבית חולים \n" + count2);
+                count2++;
+                richTextBox2.AppendText("זריקה של הורמון לעידוד ייצור תאי הדם האדומים \n" + count2);
+                count2++;
             }
             if (0.5 < patient1.Crtn)
             {
                 richTextBox1.AppendText(count + ". קיים ערך גבוה של קריטאינין ערכים גבוהים מהנורמה עלולים להצביע על בעיה כלייתית ובמקרים חמורים על אי ספיקת כליות. ערכים גבוהים ניתן למצוא גם בעת שלשולים והקאות (הגורמים לפירוק מוגבר של שריר ולערכים גבוהים של קריאטינין), מחלות שריר וצריכה מוגברת של בשר.\n");
                 count++;
+                richTextBox2.AppendText("שני כדורי 5 מג של כורכום כי-3 של אלטמן ביום למשך חודש \n" + count2);
+                count2++;
+                richTextBox2.AppendText("לתאם פגישה עם תזונאית \n" + count2);
+                count2++;
             }
             if (0.2 > patient1.Crtn)
             {
                 richTextBox1.AppendText(count + ".קיים ערך נמוך של קריטאינין אשר נראים לרוב בחולים בעלי מסת שריר ירודה מאוד ואנשים בתת תזונה שאינם צורכים די חלבון.\n");
                 count++;
+                richTextBox2.AppendText("לתאם פגישה עם תזונאית \n" + count2);
+                count2++;
             }
             if (patient1.sex == "man")
             {
-                if (60 < patient1.Iron)
+                if (160 < patient1.Iron)
                 {
                     richTextBox1.AppendText(count + ". קיים ערך גבוה של ברזל ערכים גבוהים עלולים להצביע על הרעלת ברזל. \n");
                     count++;
+                    richTextBox2.AppendText(" להתפנות לבית חולים \n" + count2);
+                    count2++;
                 }
-                if (160 > patient1.Iron)
+                if (60 > patient1.Iron)
                 {
                     richTextBox1.AppendText(count + ". קיים ערך נמוך של ברזל אשר מעיד בדרך כלל על תזונה לא מספקת או על עלייה בצורך בברזל (למשל בהריון) או על איבוד דם בעקבות דימום. \n");
                     count++;
+                    richTextBox2.AppendText(" להתפנות לבית חולים \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText("שני כדורי 10 מג של בי-12 ביום למשך חודש \n" + count2);
+                    count2++;
                 }
             }
             else
@@ -768,11 +1104,17 @@ namespace FinalProDoctor
                 {
                     richTextBox1.AppendText(count + ". קיים ערך גבוה של ברזל ערכים גבוהים עלולים להצביע על הרעלת ברזל. \n");
                     count++;
+                    richTextBox2.AppendText(" להתפנות לבית חולים \n" + count2);
+                    count2++;
                 }
                 if (48 > patient1.Iron)
                 {
                     richTextBox1.AppendText(count + ". קיים ערך נמוך של ברזל אשר מעיד בדרך כלל על תזונה לא מספקת או על עלייה בצורך בברזל (למשל בהריון) או על איבוד דם בעקבות דימום. \n");
                     count++;
+                    richTextBox2.AppendText(" להתפנות לבית חולים \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText("שני כדורי 10 מג של בי-12 ביום למשך חודש \n" + count2);
+                    count2++;
                 }
             }
             if (patient1.sex == "man")
@@ -801,6 +1143,10 @@ namespace FinalProDoctor
                     {
                         richTextBox1.AppendText(count + ". קיים ערך נמוך של 'הכולסטרול הטוב', הינו מולקולה דמוית חלבון ערכים נמוכים עשויים להצביע על סיכון למחלות לב, על היפרליפידמיה )יתר שומנים בדם( או על סוכרת מבוגרים . \n");
                         count++;
+                        richTextBox2.AppendText(" לתאם פגישה עם תזונאי, כדור 5 מג של סימוביל ביום למשך שבוע \n" + count2);
+                        count2++;
+                        richTextBox2.AppendText(" התאמת אינסולין למטופל \n" + count2);
+                        count2++;
                     }
                 }
             }
@@ -815,6 +1161,10 @@ namespace FinalProDoctor
                 {
                     richTextBox1.AppendText(count + ". קיים ערך נמוך של 'הכולסטרול הטוב', הינו מולקולה דמוית חלבון ערכים נמוכים עשויים להצביע על סיכון למחלות לב, על היפרליפידמיה )יתר שומנים בדם( או על סוכרת מבוגרים . \n");
                     count++;
+                    richTextBox2.AppendText(" לתאם פגישה עם תזונאי, כדור 5 מג של סימוביל ביום למשך שבוע \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText(" התאמת אינסולין למטופל \n" + count2);
+                    count2++;    
                 }
             }
             if (patient1.origin == 2)
@@ -823,11 +1173,19 @@ namespace FinalProDoctor
                 {
                     richTextBox1.AppendText(count + ". קיים ערך גבוה של פוסםטזה אלקלית עלול להצביע על מחלות כבד, מחלות בדרכי המרה, הריון, פעילות יתר של בלוטת התריס או שימוש בתרופות שונות. \n");
                     count++;
+                    richTextBox2.AppendText(" הפניה לטיופל חירוגי \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText(" הפניה לרופא המשפחה לצורך התאמה בין התרופות \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText(" Propylthiouracil להקטנת פעילות בלוטת התריס \n" + count2);
+                    count2++;
                 }
                 if (60 > patient1.AP)
                 {
                     richTextBox1.AppendText(count + ". ויטמין B6 חומצה פולית. ,B12ויטמין ,C  קיים ערך נמוך של פוסםטזה אלקלית עלול להצביע על על תזונה לקויה שחסרים בה חלבונים. חוסר בוויטמינים כמו ויטמין . \n");
                     count++;
+                    richTextBox2.AppendText(" הפניה לבדיקת דם לזיהוי הויטמינים החסרים  \n" + count2);
+                    count2++;
                 }
             }
             else
@@ -836,11 +1194,19 @@ namespace FinalProDoctor
                 {
                     richTextBox1.AppendText(count + ". קיים ערך גבוה של פוסםטזה אלקלית עלול להצביע על מחלות כבד, מחלות בדרכי המרה, הריון, פעילות יתר של בלוטת התריס או שימוש בתרופות שונות. \n");
                     count++;
+                    richTextBox2.AppendText(" הפניה לטיופל חירוגי \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText(" הפניה לרופא המשפחה לצורך התאמה בין התרופות \n" + count2);
+                    count2++;
+                    richTextBox2.AppendText(" Propylthiouracil להקטנת פעילות בלוטת התריס \n" + count2);
+                    count2++;
                 }
                 if (30 > patient1.AP)
                 {
                     richTextBox1.AppendText(count + ". ויטמין B6 חומצה פולית. ,B12ויטמין ,C  קיים ערך נמוך של פוסםטזה אלקלית עלול להצביע על על תזונה לקויה שחסרים בה חלבונים. חוסר בוויטמינים כמו ויטמין . \n");
                     count++;
+                    richTextBox2.AppendText(" הפניה לבדיקת דם לזיהוי הויטמינים החסרים  \n" + count2);
+                    count2++;
                 }
             }
         }
@@ -1038,11 +1404,11 @@ namespace FinalProDoctor
             checkBox1.Checked = false; checkBox2.Checked = false; checkBox3.Checked = false; checkBox4.Checked = false;
             comboBox1.Text = string.Empty;
             chart1.Titles.Clear();
+            richTextBox1.Clear();
             foreach (var series in chart1.Series)
             {
                 series.Points.Clear();
             }
-
         }
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1061,6 +1427,129 @@ namespace FinalProDoctor
             this.Hide();
             form1_place.ShowDialog();
             this.Close();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (patient1 == null)
+            {
+                MessageBox.Show("You need to add patient first");
+                return;
+            }
+
+            string file = ""; //variable for the Excel File Location
+            DataTable dt = new DataTable(); //container for our excel data
+            DataRow row;
+            DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
+
+            if (result == DialogResult.OK) // Check if Result == "OK".
+            {
+                file = openFileDialog1.FileName; //get the filename with the location of the file
+                try
+                {
+                    //Create Object for Microsoft.Office.Interop.Excel that will be use to read excel file
+
+                    Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
+
+                    Microsoft.Office.Interop.Excel.Workbook excelWorkbook = excelApp.Workbooks.Open(file);
+
+                    Microsoft.Office.Interop.Excel._Worksheet excelWorksheet = excelWorkbook.Sheets[1];
+
+                    Microsoft.Office.Interop.Excel.Range excelRange = excelWorksheet.UsedRange;
+
+                    int rowCount = excelRange.Rows.Count; //get row count of excel data
+
+                    int colCount = excelRange.Columns.Count; // get column count of excel data
+
+                    //Get the first Column of excel file which is the Column Name
+
+                    for (int i = 1; i <= rowCount; i++)
+                    {
+                        for (int j = 1; j <= colCount; j++)
+                        {
+                            dt.Columns.Add(excelRange.Cells[i, j].Value2.ToString());
+
+                        }
+                        break;
+                    }
+
+                    //Get Row Data of Excel
+
+                    int rowCounter; //This variable is used for row index number
+                    for (int i = 2; i <= rowCount; i++) //Loop for available row of excel data
+                    {
+                        row = dt.NewRow(); //assign new row to DataTable
+                        rowCounter = 0;
+                        for (int j = 1; j <= colCount; j++) //Loop for available column of excel data
+                        {
+                            //check if cell is empty
+                            if (excelRange.Cells[i, j] != null && excelRange.Cells[i, j].Value2 != null)
+                            {
+                                row[rowCounter] = excelRange.Cells[i, j].Value2.ToString();
+                            }
+                            else
+                            {
+                                row[i] = "";
+                            }
+                            rowCounter++;
+                        }
+                        dt.Rows.Add(row); //add row to DataTable
+                    }
+
+                    float WBC = 0;
+                    float Neut = 0;
+                    float Lymph = 0;
+                    float RBC = 0;
+                    float HCT = 0;
+                    float Urea = 0;
+                    float Hb = 0;
+                    float Crtn = 0;
+                    float Iron = 0;
+                    float HDL = 0;
+                    float AP = 0;
+
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                    
+                        WBC = float.Parse(dr["WBC"].ToString());
+                        Neut = float.Parse(dr["Neut"].ToString());
+                        Lymph = float.Parse(dr["Lymph"].ToString());
+                        RBC = float.Parse(dr["RBC"].ToString());
+                        HCT = float.Parse(dr["HCT"].ToString());
+                        Urea = float.Parse(dr["Urea"].ToString());
+                        Hb = float.Parse(dr["Hb"].ToString());
+                        Crtn = float.Parse(dr["Crtn"].ToString());
+                        Iron = float.Parse(dr["Iron"].ToString());
+                        HDL = float.Parse(dr["HDL"].ToString());
+                        AP = float.Parse(dr["AP"].ToString());
+                    }
+
+
+                    patient1.setBloodTest(WBC, Neut, Lymph, RBC, HCT, Urea, Hb, Crtn, Iron, HDL, AP);
+                    //close and clean excel process
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
+                    Marshal.ReleaseComObject(excelRange);
+                    Marshal.ReleaseComObject(excelWorksheet);
+                    //quit apps
+                    excelWorkbook.Close();
+                    Marshal.ReleaseComObject(excelWorkbook);
+                    excelApp.Quit();
+                    Marshal.ReleaseComObject(excelApp);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+
+            }
+
+        }
+
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+
         }
     }
     
