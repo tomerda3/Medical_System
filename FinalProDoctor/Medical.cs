@@ -60,7 +60,7 @@ namespace FinalProDoctor
             try
             {
                 int orindex = comboBox1.SelectedIndex;
-                patient1 = new Patient(textBox1.Text, Int32.Parse(textBox2.Text), sex, checkBox1.Checked, Int32.Parse(textBox3.Text), Int32.Parse(textBox4.Text), orindex);
+                patient1 = new Patient(textBox1.Text, Int32.Parse(textBox2.Text), sex, checkBox1.Checked, Int32.Parse(textBox3.Text), Int32.Parse(textBox4.Text), orindex, Int32.Parse(textBox3co.Text));
             }
 
             catch (FormatException e1)
@@ -123,25 +123,25 @@ namespace FinalProDoctor
                 myexcelWorksheet.Cells[1, 4] = "Age";
                 myexcelWorksheet.Cells[1, 5] = "Gender";
                 myexcelWorksheet.Cells[1, 6] = "Smoking";
-                myexcelWorksheet.Cells[1, 7] = "Pragnent";
-                myexcelWorksheet.Cells[1, 8] = "Alergic";
+                //myexcelWorksheet.Cells[1, 7] = "Pragnent";
+                //myexcelWorksheet.Cells[1, 8] = "Alergic";
                 myexcelWorksheet.Cells[1, 9] = "Height";
                 myexcelWorksheet.Cells[1, 10] = "Weight";
                 myexcelWorksheet.Cells[1, 11] = "Ethnic group";
-                myexcelWorksheet.Cells[1, 12] = "High fiver";
-                myexcelWorksheet.Cells[1, 13] = "Lung disease";
-                myexcelWorksheet.Cells[1, 14] = "Vomiting and diarrhea";
+                //myexcelWorksheet.Cells[1, 12] = "High fiver";
+                //myexcelWorksheet.Cells[1, 13] = "Lung disease";
+                //myexcelWorksheet.Cells[1, 14] = "Vomiting and diarrhea";
                 myexcelWorksheet.Cells[1, 15] = "WBC";
                 myexcelWorksheet.Cells[1, 16] = "Neut";
-                myexcelWorksheet.Cells[1, 17] = "RBC";
-                myexcelWorksheet.Cells[1, 18] = "HCT";
-                myexcelWorksheet.Cells[1, 19] = "Urea";
-                myexcelWorksheet.Cells[1, 20] = "Hb";
-                myexcelWorksheet.Cells[1, 21] = "Crtn";
-                myexcelWorksheet.Cells[1, 22] = "Iron";
-                myexcelWorksheet.Cells[1, 23] = "HDL";
-                myexcelWorksheet.Cells[1, 24] = "AP";
-                myexcelWorksheet.Cells[1, 25] = "Lymph";
+                myexcelWorksheet.Cells[1, 17] = "Lymph";
+                myexcelWorksheet.Cells[1, 18] = "RBC";
+                myexcelWorksheet.Cells[1, 19] = "HCT";
+                myexcelWorksheet.Cells[1, 20] = "Urea";
+                myexcelWorksheet.Cells[1, 21] = "Hb";
+                myexcelWorksheet.Cells[1, 22] = "Crtn";
+                myexcelWorksheet.Cells[1, 23] = "Iron";
+                myexcelWorksheet.Cells[1, 24] = "HDL";
+                myexcelWorksheet.Cells[1, 25] = "AP";
                 myexcelWorksheet.Cells[1, 26] = "Diagnosis";
                 myexcelWorksheet.Cells[1, 27] = "Recommendation";
 
@@ -155,14 +155,14 @@ namespace FinalProDoctor
                     myexcelWorksheet.Cells[2, 6] = "Yes";
                 else myexcelWorksheet.Cells[2, 6] = "No";
 
-             // myexcelWorksheet.Cells[2, 7] = arrPat[i].getPreg().ToString();
-             //   myexcelWorksheet.Cells[2, 8] = arrPat[i].getAle().ToString();
-                myexcelWorksheet.Cells[2, 9] = arrPat[i].getHe();
-                myexcelWorksheet.Cells[2, 10] = arrPat[i].getWe();
-                myexcelWorksheet.Cells[2, 11] = arrPat[i].getGroup();
-                myexcelWorksheet.Cells[2, 12] = petFivercheckBox1.Text; //fiver
-                myexcelWorksheet.Cells[2, 13] = patLoDischeckBox2.Text; //lung
-                myexcelWorksheet.Cells[2, 14] = patVomcheckBox3.Text; //vomtimg
+                // myexcelWorksheet.Cells[2, 7] = arrPat[i].getPreg().ToString();
+                //   myexcelWorksheet.Cells[2, 8] = arrPat[i].getAle().ToString();
+                myexcelWorksheet.Cells[2, 9] = patient1.weight;
+                myexcelWorksheet.Cells[2, 10] = patient1.high;
+                myexcelWorksheet.Cells[2, 11] = patient1.;
+                //myexcelWorksheet.Cells[2, 12] = petFivercheckBox1.Text; //fiver
+                //myexcelWorksheet.Cells[2, 13] = patLoDischeckBox2.Text; //lung
+                //myexcelWorksheet.Cells[2, 14] = patVomcheckBox3.Text; //vomtimg
                 myexcelWorksheet.Cells[2, 15] = patient1.WBC.ToString();
                 myexcelWorksheet.Cells[2, 16] = patient1.Neut.ToString() + "%";
                 myexcelWorksheet.Cells[2, 17] = patient1.Lymph.ToString();
@@ -176,8 +176,8 @@ namespace FinalProDoctor
                 myexcelWorksheet.Cells[2, 24] = patient1.AP.ToString();
 
                 myexcelWorksheet.Cells[2, 25] = arrPat[i].getLy() + "%";
-                myexcelWorksheet.Cells[2, 26] = allDiag; //DIAG
-                myexcelWorksheet.Cells[2, 27] = allRec;//REC
+                myexcelWorksheet.Cells[2, 26] = patient1.di; //DIAG
+                myexcelWorksheet.Cells[2, 27] = patient1.se;//REC
 
 
                 myexcelApplication.ActiveWorkbook.SaveAs(@"C:\Users\Asus\OneDrive\Desktop\info.xls", Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal);
@@ -220,6 +220,8 @@ namespace FinalProDoctor
                 count++;
                 richTextBox2.AppendText("לנוח בבית\n" + count2);
                 count2++;
+                richTextBox2.AppendText("אנטרקטיניב - Entrectinib\n" + count2);
+                count2++;
             }
 
             if (54 < patient1.Neut)
@@ -258,6 +260,8 @@ namespace FinalProDoctor
             {
                 richTextBox1.AppendText(count + ".ערך נמוך של לימפוציטים מעידים על בעיה ביצירת תאי הדם.\n");
                 count++;
+                richTextBox2.AppendText("כדור 10 מג של בי-12 ביום למשך חודש, כדור 5 מג של חומצה פולית ביום למשך חודש \n" + count2);
+                count2++;
             }
             if (6 < patient1.RBC)
             {
@@ -280,7 +284,7 @@ namespace FinalProDoctor
                 richTextBox2.AppendText("להתפנות בדחיפות לבית החולים \n" + count2);
                 count2++;
             }
-            if (6 < patient1.HCT || 4 > patient1.HCT)
+            if (54 < patient1.HCT || 37 > patient1.HCT)
             {
                 if (patient1.sex == "male")
                 {
@@ -288,6 +292,8 @@ namespace FinalProDoctor
                     {
                         richTextBox1.AppendText(count + ".קיים ערך גבוה של נפח כדוריות הדם האדומות  דבר זה שכיח בדרך כלל אצל מעשנים.\n");
                         count++;
+                        richTextBox2.AppendText("להפסיק לעשן \n" + count2);
+                        count2++;
 
                     }
                     if (37 > patient1.HCT)
@@ -306,6 +312,8 @@ namespace FinalProDoctor
                     {
                         richTextBox1.AppendText(count + ".קיים ערך גבוה של נפח כדוריות הדם האדומות  דבר זה שכיח בדרך כלל אצל מעשנים.\n");
                         count++;
+                        richTextBox2.AppendText("להפסיק לעשן \n" + count2);
+                        count2++;
                     }
                     if (33 > patient1.HCT)
                     {
@@ -567,6 +575,8 @@ namespace FinalProDoctor
                     count2++;
                 }
             }
+            patient1.setdi(richTextBox1.Text);
+            patient1.setse(richTextBox2.Text);
         }
         public void analysisForChildren()
         {
@@ -587,6 +597,10 @@ namespace FinalProDoctor
             {
                 richTextBox1.AppendText(count + ". קיים ערך נמוך של כדורי דם לבנים היכול להצביע על מחלה ויראלית, כשל של מערכת החיסון ובמקרים נדירים ביותר על סרטן\n");
                 count++;
+                richTextBox2.AppendText("לנוח בבית\n" + count2);
+                count2++;
+                richTextBox2.AppendText("אנטרקטיניב - Entrectinib\n" + count2);
+                count2++;
             }
 
             if (54 < patient1.Neut)
@@ -625,6 +639,8 @@ namespace FinalProDoctor
             {
                 richTextBox1.AppendText(count + ".ערך נמוך של לימפוציטים מעידים על בעיה ביצירת תאי הדם.\n");
                 count++;
+                richTextBox2.AppendText("כדור 10 מג של בי-12 ביום למשך חודש, כדור 5 מג של חומצה פולית ביום למשך חודש \n" + count2);
+                count2++;
             }
             if (6 < patient1.RBC)
             {
@@ -647,7 +663,7 @@ namespace FinalProDoctor
                 richTextBox2.AppendText("להתפנות בדחיפות לבית החולים \n" + count2);
                 count2++;
             }
-            if (6 < patient1.HCT || 4 > patient1.HCT)
+            if (54 < patient1.HCT || 37 > patient1.HCT)
             {
                 if (patient1.sex == "male")
                 {
@@ -655,6 +671,8 @@ namespace FinalProDoctor
                     {
                         richTextBox1.AppendText(count + ".קיים ערך גבוה של נפח כדוריות הדם האדומות  דבר זה שכיח בדרך כלל אצל מעשנים.\n");
                         count++;
+                        richTextBox2.AppendText("להפסיק לעשן \n" + count2);
+                        count2++;
                     }
                     if (37 > patient1.HCT)
                     {
@@ -672,6 +690,8 @@ namespace FinalProDoctor
                     {
                         richTextBox1.AppendText(count + ".קיים ערך גבוה של נפח כדוריות הדם האדומות  דבר זה שכיח בדרך כלל אצל מעשנים.\n");
                         count++;
+                        richTextBox2.AppendText("להפסיק לעשן \n" + count2);
+                        count2++;
                     }
                     if (33 > patient1.HCT)
                     {
@@ -885,6 +905,8 @@ namespace FinalProDoctor
                     count2++;
                 }
             }
+            patient1.setdi(richTextBox1.Text);
+            patient1.setse(richTextBox2.Text);
         }
         public void analysisForbaby()
         {
@@ -906,6 +928,8 @@ namespace FinalProDoctor
                 richTextBox1.AppendText(count + ". קיים ערך נמוך של כדורי דם לבנים היכול להצביע על מחלה ויראלית, כשל של מערכת החיסון ובמקרים נדירים ביותר על סרטן\n");
                 count++;
                 richTextBox2.AppendText("לנוח בבית\n" + count2);
+                count2++;
+                richTextBox2.AppendText("אנטרקטיניב - Entrectinib\n" + count2);
                 count2++;
             }
 
@@ -942,9 +966,12 @@ namespace FinalProDoctor
                 count2++;
             }
 
-            if (36 < patient1.Lymph)
+            if (36 > patient1.Lymph)
             {
-
+                richTextBox1.AppendText(count + ".ערך נמוך של לימפוציטים מעידים על בעיה ביצירת תאי הדם.\n");
+                count++;
+                richTextBox2.AppendText("כדור 10 מג של בי-12 ביום למשך חודש, כדור 5 מג של חומצה פולית ביום למשך חודש \n" + count2);
+                count2++;
             }
             if (6 < patient1.RBC)
             {
@@ -967,7 +994,7 @@ namespace FinalProDoctor
                 richTextBox2.AppendText("להתפנות בדחיפות לבית החולים \n" + count2);
                 count2++;
             }
-            if (6 < patient1.HCT || 4 > patient1.HCT)
+            if (54 < patient1.HCT || 37 > patient1.HCT)
             {
                 if (patient1.sex == "male")
                 {
@@ -975,6 +1002,8 @@ namespace FinalProDoctor
                     {
                         richTextBox1.AppendText(count + ".קיים ערך גבוה של נפח כדוריות הדם האדומות  דבר זה שכיח בדרך כלל אצל מעשנים.\n");
                         count++;
+                        richTextBox2.AppendText("להפסיק לעשן \n" + count2);
+                        count2++;
                     }
                     if (37 > patient1.HCT)
                     {
@@ -992,6 +1021,8 @@ namespace FinalProDoctor
                     {
                         richTextBox1.AppendText(count + ".קיים ערך גבוה של נפח כדוריות הדם האדומות  דבר זה שכיח בדרך כלל אצל מעשנים.\n");
                         count++;
+                        richTextBox2.AppendText("להפסיק לעשן \n" + count2);
+                        count2++;
                     }
                     if (33 > patient1.HCT)
                     {
@@ -1209,6 +1240,8 @@ namespace FinalProDoctor
                     count2++;
                 }
             }
+            patient1.setdi(richTextBox1.Text);
+            patient1.setse(richTextBox2.Text);
         }
         public void ClearAll()
         {
@@ -1548,6 +1581,11 @@ namespace FinalProDoctor
         }
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
