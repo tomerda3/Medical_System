@@ -146,6 +146,7 @@ namespace FinalProDoctor
         public int high;
         public int weight;
         public int origin;
+        public string co;
 
         public float WBC =0;
         public float Neut =0;
@@ -158,6 +159,8 @@ namespace FinalProDoctor
         public float Iron =0;
         public float HDL = 0;
         public float AP = 0;
+        public string di = null;
+        public string se = null;
 
         public Patient(string name, int age, string sex, bool smoke, int high, int weight,int origin)
         {
@@ -168,6 +171,7 @@ namespace FinalProDoctor
             this.high = high;
             this.weight = weight;
             this.origin = origin;
+            
         }
         public Patient()
         {
@@ -192,6 +196,14 @@ namespace FinalProDoctor
             this.Iron = Iron;
             this.HDL = HDL;
             this.AP = AP;
+        }
+        public void setdi(string other)
+        {
+            this.di = other;
+        }
+        public void setse(string other)
+        {
+            this.se = other;
         }
     }
 
