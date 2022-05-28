@@ -10,7 +10,7 @@
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /// <param firstName="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -279,7 +279,7 @@
             // 
             this.button3.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.button3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button3.Location = new System.Drawing.Point(85, 732);
+            this.button3.Location = new System.Drawing.Point(87, 745);
             this.button3.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(163, 54);
@@ -293,10 +293,10 @@
             this.textBox3.BackColor = System.Drawing.SystemColors.Control;
             this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox3.ForeColor = System.Drawing.Color.Red;
-            this.textBox3.Location = new System.Drawing.Point(85, 695);
+            this.textBox3.Location = new System.Drawing.Point(83, 687);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(274, 26);
+            this.textBox3.Size = new System.Drawing.Size(274, 47);
             this.textBox3.TabIndex = 94;
             // 
             // BloodTest
