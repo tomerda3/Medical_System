@@ -48,8 +48,9 @@ namespace FinalProDoctor
             excel = new Excel.Application();
             excel.Visible = true;
             Excel.Workbook wkb = null;
-
-            wkb = Open(excel, "C:\\Users\\Tomer\\OneDrive\\Desktop\\user.xls");
+            string currentDir = System.IO.Directory.GetCurrentDirectory() + "\\user.xls";
+            string excelFile = @currentDir;
+            wkb = Open(excel, excelFile);
             Excel.Range searchedRangeUserName = excel.get_Range("B1", "B12");
             Excel.Range searchedRangePassword = excel.get_Range("C1", "C12");
             string user_name = textBox1.Text;
