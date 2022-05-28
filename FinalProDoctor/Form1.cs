@@ -71,10 +71,10 @@ namespace FinalProDoctor
 
                 try
                 {
-                    // Check here the user name is correct.
+                    // Check here the user firstName is correct.
                     if (currentFindUserName == null)
                     {
-                        textBox3.Text = "The user name is incorrect";
+                        textBox3.Text = "The user firstName is incorrect";
                         return;
                     }
 
@@ -139,14 +139,19 @@ namespace FinalProDoctor
     }
     public class Patient
     {
-        public string name;
+        public string firstName;
+        public string lastName;
         public int age;
         public string sex;
         public bool smoke;
-        public int high;
-        public int weight;
+        public float high;
+        public float weight;
         public int origin;
         public string co;
+        public string id;
+        public bool pregpregnant;
+        public bool takedrugs;
+
 
         public float WBC =0;
         public float Neut =0;
@@ -162,26 +167,34 @@ namespace FinalProDoctor
         public string di = null;
         public string se = null;
 
-        public Patient(string name, int age, string sex, bool smoke, int high, int weight,int origin)
+        public Patient(string firstName,string lastName, int age, string sex, bool smoke, float high, float weight,int origin, bool pregpregnant, bool takedrugs, string id)
         {
-            this.name = name;
+            this.firstName = firstName;
+            this.lastName = lastName;
             this.age = age;
             this.sex = sex;
             this.smoke = smoke;
             this.high = high;
             this.weight = weight;
             this.origin = origin;
-            
+            this.id = id;
+            this.pregpregnant = pregpregnant;
+            this.takedrugs = takedrugs;
+
         }
         public Patient()
         {
-            this.name = "no name";
+            this.firstName = "no firstName";
+            this.lastName = "no lastname";
             this.age = -1;
             this.sex = "";
             this.smoke = false;
             this.high = -1;
             this.weight = -1;
             this.origin = -1;
+            this.id = "00000000";
+            this.pregpregnant = false;
+            this.takedrugs = false;
         }
         public void setBloodTest(float WBC, float Neut, float Lymph, float RBC, float HCT, float Urea, float Hb, float Crtn, float Iron, float HDL, float AP)
         {
