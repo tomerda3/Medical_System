@@ -75,6 +75,16 @@ namespace FinalProDoctor
                 myexcelWorksheet.Cells[2, 2] = textBox1.Text;
                 myexcelWorksheet.Cells[2, 3] = textBox2.Text;
 
+                try
+                {
+                    myexcelApplication.ActiveWorkbook.SaveAs(@"C:\Users\Tomer\OneDrive\Desktop\user.xls", Excel.XlFileFormat.xlWorkbookNormal);
+                }
+
+                catch (FormatException e1)
+                {
+                    textBox4.Text = "There is a problem in the input data";
+                    return;
+                }
 
                 myexcelApplication.ActiveWorkbook.SaveAs(@"C:\Users\Tomer\OneDrive\Desktop\user.xls", Excel.XlFileFormat.xlWorkbookNormal);
 
@@ -87,7 +97,7 @@ namespace FinalProDoctor
         bool checkName(string userName)
         {
             int count = 0, checkChar = 0;
-            if (userName.Length < 6 && userName.Length > 8)
+            if (userName.Length < 6 || userName.Length > 8)
                 return false;
             for (int i =0; i< userName.Length; i++)
             {
