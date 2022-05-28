@@ -89,6 +89,7 @@ namespace FinalProDoctor
                 catch (FormatException e1)
                 {
                     textBox3.Text = "There is a problem in the input";
+                    return;
                 }
 
             }
@@ -110,12 +111,22 @@ namespace FinalProDoctor
                        string fileName, bool readOnly = false, bool editable = true,
                        bool updateLinks = true)
         {
-            Excel.Workbook book = excelInstance.Workbooks.Open(
+            try
+            {
+                Excel.Workbook book = excelInstance.Workbooks.Open(
                 fileName, updateLinks, readOnly,
                 Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing,
                 Type.Missing, editable, Type.Missing, Type.Missing, Type.Missing,
                 Type.Missing, Type.Missing);
-            return book;
+                return book;
+            }
+
+            catch (System.Runtime.InteropServices.COMException e1)
+            {
+                MessageBox.Show("The file is open elsewhere");
+            }
+
+            return null;
         }
 
 
