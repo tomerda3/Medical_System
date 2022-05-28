@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,36 +60,67 @@ namespace FinalProDoctor
 
         public void excelWriting()
         {
+            Excel.Application excel = null;
+            Excel.Workbook workbook = null;
+            Excel.Worksheet worksheet = null;
 
-            Excel.Application myexcelApplication = new Excel.Application();
-            if (myexcelApplication != null)
+            //string excelFile = @"C:\Users\Tomer\OneDrive\Desktop\user.xls";
+            string currentDir = System.IO.Directory.GetCurrentDirectory() + "\\user.xls";
+            string excelFile = @currentDir;
+            try
             {
-                Excel.Workbook myexcelWorkbook = myexcelApplication.Workbooks.Add();
-                Excel.Worksheet myexcelWorksheet = (Excel.Worksheet)myexcelWorkbook.Sheets.Add();
-
-                myexcelWorksheet.Cells[1, 1] = "id";
-                myexcelWorksheet.Cells[1, 2] = "user firstName";
-                myexcelWorksheet.Cells[1, 3] = "password";
-
-
-                myexcelWorksheet.Cells[3, 1] = textBox3.Text;
-                myexcelWorksheet.Cells[3, 2] = textBox1.Text;
-                myexcelWorksheet.Cells[3, 3] = textBox2.Text;
-
-                try
+                if (!File.Exists(excelFile))
                 {
-                    myexcelApplication.ActiveWorkbook.SaveAs(@"C:\Users\Tomer\OneDrive\Desktop\user.xls", Excel.XlFileFormat.xlWorkbookNormal);
+                    Excel.Application myexcelApplication = new Excel.Application();
+                    Excel.Workbook myexcelWorkbook = myexcelApplication.Workbooks.Add();
+                    Excel.Worksheet myexcelWorksheet = (Excel.Worksheet)myexcelWorkbook.Sheets.Add();
+
+                    myexcelWorksheet.Cells[1, 1] = "id";
+                    myexcelWorksheet.Cells[1, 2] = "user firstName";
+                    myexcelWorksheet.Cells[1, 3] = "password";
+                    myexcelApplication.ActiveWorkbook.SaveAs(excelFile, Excel.XlFileFormat.xlWorkbookNormal);
+                    myexcelWorkbook.Close();
+                    myexcelApplication.Quit();
                 }
 
-                catch (System.Runtime.InteropServices.COMException e1)
-                {
-                    textBox4.Text = "There is a problem in the input data";
-                    return;
-                }
+                excel = new Excel.Application { Visible = true, DisplayAlerts = false };
 
-                myexcelWorkbook.Close();
-                myexcelApplication.Quit();
+                workbook = excel.Workbooks.Open(excelFile);
+                worksheet = (Excel.Worksheet) workbook.Worksheets[1];
+
+                int newRow = worksheet.Range["A" + worksheet.Rows.Count, Type.Missing]
+                                      .End[Excel.XlDirection.xlUp].Row + 1;
+
+                // Fill you cells
+                worksheet.Cells[newRow, 1] = textBox3.Text;
+                worksheet.Cells[newRow, 2] = textBox1.Text;
+                worksheet.Cells[newRow, 3] = textBox2.Text;
+
+                // Save changes
+                workbook.Save();
             }
+            catch (Exception ex) // Or System.Runtime.InteropServices.COMException
+            {
+                // Handle it or log or do nothing
+            }
+            finally
+            {
+                // Close Book and Excel and release COM Object
+                workbook?.Close(0);
+                excel?.Quit();
+            }
+
+
+
+
+
+
+
+
+
+
+
+
         }
 
         bool checkName(string userName)
