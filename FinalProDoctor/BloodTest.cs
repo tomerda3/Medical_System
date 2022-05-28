@@ -57,6 +57,22 @@ namespace FinalProDoctor
                 textBox3.Text = "There is a problem in the input data";
                 return;
             }
+            if (Lymph > 100 || Lymph < 0)
+            {
+                textBox3.Text = "Imposible input Lymph is Percent";
+                return;
+            }
+            if ( Neut > 100 || Neut < 0)
+            {
+                textBox3.Text = "Imposible input Neut is Percent";
+                return;
+            }
+            if (HCT > 100 || HCT < 0)
+            {
+                textBox3.Text = "Imposible input HCT is Percent";
+                return;
+            }
+
 
             Medical.instance.setBlood(WBC, Neut, Lymph, RBC, HCT, Urea, Hb, Crtn, Iron, HDL, AP);
             this.Hide();
