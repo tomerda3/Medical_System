@@ -52,15 +52,49 @@ namespace FinalProDoctor
                 series.Points.Clear();
             }
 
-            string sex;
+            string sex = "male";
             if (checkBox1.Checked)
                 sex = "male";
             else sex = "female";
 
+            bool pregnant=false;
+            if (checkBox6.Checked)
+                pregnant = true;
+            if (sex == "male")
+                pregnant = false;
+            bool drugs = false;
+            if (checkBox8.Checked)
+                drugs = true;
+
+            int age = Int32.Parse(textBox2.Text);
+            if (age > 120 || age < 0)
+            {
+                textBox5.Text = "The age is off limit";
+                return;
+            }
+            string idd = textBox7.Text;
+            if (idd.Length != 8)
+            {
+                textBox5.Text = "The id is too short or too big";
+                return;
+            }
+            float weight =float.Parse(textBox4.Text);
+            if (weight > 500 || weight < 0)
+            {
+                textBox5.Text = "The weight is too short or too big";
+                return;
+            }
+            float high = float.Parse(textBox3.Text);
+            if (high > 300 || high < 0)
+            {
+                textBox5.Text = "The high is too short or too big";
+                return;
+            }
+
             try
             {
                 int orindex = comboBox1.SelectedIndex;
-                patient1 = new Patient(textBox1.Text, Int32.Parse(textBox2.Text), sex, checkBox1.Checked, Int32.Parse(textBox3.Text), Int32.Parse(textBox4.Text), orindex, Int32.Parse(textBox3co.Text));
+                patient1 = new Patient(textBox1.Text, textBox6.Text, age, sex, checkBox4.Checked, high, weight, orindex, pregnant,drugs, idd);
             }
 
             catch (FormatException e1)
@@ -87,6 +121,12 @@ namespace FinalProDoctor
                 return;
             }
 
+            if (patient1.WBC == 0 || patient1.Neut == 0 || patient1.Lymph == 0 || patient1.RBC == 0 || patient1.HCT == 0 || patient1.Urea == 0 || patient1.Hb == 0 || patient1.Crtn == 0 || patient1.Iron == 0 || patient1.HDL == 0 || patient1.AP == 0)
+            {
+                MessageBox.Show("You need to add Blood Test ");
+                return;
+            }
+            
             chart1.Series["BloodTest"].Points.AddXY("WBC", patient1.WBC);
             chart1.Series["BloodTest"].Points.AddXY("Neut", patient1.Neut);
             chart1.Series["BloodTest"].Points.AddXY("Lymph", patient1.Lymph);
@@ -101,7 +141,7 @@ namespace FinalProDoctor
             chart1.Titles.Add("BloodTest Result");
 
             richTextBox1.SelectionAlignment = HorizontalAlignment.Right;
-            richTextBox1.AppendText(" : שם המטופל " + patient1.name);
+            richTextBox1.AppendText(" : שם המטופל " + patient1.firstName);
             richTextBox1.AppendText("\n : אבחון המטופל\n");
 
             if (patient1.age >= 18)
@@ -117,70 +157,85 @@ namespace FinalProDoctor
                 Microsoft.Office.Interop.Excel.Workbook myexcelWorkbook = myexcelApplication.Workbooks.Add();
                 Microsoft.Office.Interop.Excel.Worksheet myexcelWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)myexcelWorkbook.Sheets.Add();
 
-                myexcelWorksheet.Cells[1, 1] = "First name";
-                myexcelWorksheet.Cells[1, 2] = "Last name";
+                myexcelWorksheet.Cells[1, 1] = "First Name";
+                myexcelWorksheet.Cells[1, 2] = "Last Name";
                 myexcelWorksheet.Cells[1, 3] = "ID";
                 myexcelWorksheet.Cells[1, 4] = "Age";
                 myexcelWorksheet.Cells[1, 5] = "Gender";
                 myexcelWorksheet.Cells[1, 6] = "Smoking";
-                //myexcelWorksheet.Cells[1, 7] = "Pragnent";
-                //myexcelWorksheet.Cells[1, 8] = "Alergic";
+                myexcelWorksheet.Cells[1, 7] = "Pragnent";
+                myexcelWorksheet.Cells[1, 8] = "Taken Drugs";
                 myexcelWorksheet.Cells[1, 9] = "Height";
                 myexcelWorksheet.Cells[1, 10] = "Weight";
                 myexcelWorksheet.Cells[1, 11] = "Ethnic group";
-                //myexcelWorksheet.Cells[1, 12] = "High fiver";
-                //myexcelWorksheet.Cells[1, 13] = "Lung disease";
-                //myexcelWorksheet.Cells[1, 14] = "Vomiting and diarrhea";
-                myexcelWorksheet.Cells[1, 15] = "WBC";
-                myexcelWorksheet.Cells[1, 16] = "Neut";
-                myexcelWorksheet.Cells[1, 17] = "Lymph";
-                myexcelWorksheet.Cells[1, 18] = "RBC";
-                myexcelWorksheet.Cells[1, 19] = "HCT";
-                myexcelWorksheet.Cells[1, 20] = "Urea";
-                myexcelWorksheet.Cells[1, 21] = "Hb";
-                myexcelWorksheet.Cells[1, 22] = "Crtn";
-                myexcelWorksheet.Cells[1, 23] = "Iron";
-                myexcelWorksheet.Cells[1, 24] = "HDL";
-                myexcelWorksheet.Cells[1, 25] = "AP";
-                myexcelWorksheet.Cells[1, 26] = "Diagnosis";
-                myexcelWorksheet.Cells[1, 27] = "Recommendation";
+                myexcelWorksheet.Cells[1, 12] = "WBC";
+                myexcelWorksheet.Cells[1, 13] = "Neut";
+                myexcelWorksheet.Cells[1, 14] = "Lymph";
+                myexcelWorksheet.Cells[1, 15] = "RBC";
+                myexcelWorksheet.Cells[1, 16] = "HCT";
+                myexcelWorksheet.Cells[1, 17] = "Urea";
+                myexcelWorksheet.Cells[1, 18] = "Hb";
+                myexcelWorksheet.Cells[1, 19] = "Crtn";
+                myexcelWorksheet.Cells[1, 20] = "Iron";
+                myexcelWorksheet.Cells[1, 21] = "HDL";
+                myexcelWorksheet.Cells[1, 22] = "AP";
+                myexcelWorksheet.Cells[1, 23] = "Diagnosis";
+                myexcelWorksheet.Cells[1, 24] = "Recommendation";
 
-
-                myexcelWorksheet.Cells[2, 1] = patient1.name;
-                //myexcelWorksheet.Cells[2, 2] = arrPat[i].getLastName();
-               // myexcelWorksheet.Cells[2, 3] = arrPat[i].getID();
+                myexcelWorksheet.Cells[2, 1] = patient1.firstName;
+                myexcelWorksheet.Cells[2, 2] = patient1.lastName;
+                myexcelWorksheet.Cells[2, 3] = patient1.id.ToString();
                 myexcelWorksheet.Cells[2, 4] = patient1.age.ToString();
                 myexcelWorksheet.Cells[2, 5] = patient1.sex;
                 if(patient1.smoke == true)
                     myexcelWorksheet.Cells[2, 6] = "Yes";
                 else myexcelWorksheet.Cells[2, 6] = "No";
 
-                // myexcelWorksheet.Cells[2, 7] = arrPat[i].getPreg().ToString();
-                //   myexcelWorksheet.Cells[2, 8] = arrPat[i].getAle().ToString();
+                if (patient1.pregpregnant == true)
+                    myexcelWorksheet.Cells[2, 7] = "Yes";
+                else myexcelWorksheet.Cells[2, 7] = "No";
+
+                if (patient1.takedrugs == true)
+                    myexcelWorksheet.Cells[2, 8] = "Yes";
+                else myexcelWorksheet.Cells[2, 8] = "No";
+                
                 myexcelWorksheet.Cells[2, 9] = patient1.weight;
                 myexcelWorksheet.Cells[2, 10] = patient1.high;
-                myexcelWorksheet.Cells[2, 11] = patient1.;
-                //myexcelWorksheet.Cells[2, 12] = petFivercheckBox1.Text; //fiver
-                //myexcelWorksheet.Cells[2, 13] = patLoDischeckBox2.Text; //lung
-                //myexcelWorksheet.Cells[2, 14] = patVomcheckBox3.Text; //vomtimg
-                myexcelWorksheet.Cells[2, 15] = patient1.WBC.ToString();
-                myexcelWorksheet.Cells[2, 16] = patient1.Neut.ToString() + "%";
-                myexcelWorksheet.Cells[2, 17] = patient1.Lymph.ToString();
-                myexcelWorksheet.Cells[2, 18] = patient1.RBC.ToString() + "%";
-                myexcelWorksheet.Cells[2, 19] = patient1.HCT.ToString();
-                myexcelWorksheet.Cells[2, 20] = patient1.Urea.ToString();
-                myexcelWorksheet.Cells[2, 21] = patient1.Hb.ToString();
-                myexcelWorksheet.Cells[2, 22] = patient1.Crtn.ToString();
-                myexcelWorksheet.Cells[2, 23] = patient1.Iron.ToString();
-                myexcelWorksheet.Cells[2, 24] = patient1.HDL.ToString();
-                myexcelWorksheet.Cells[2, 24] = patient1.AP.ToString();
+                string origin = "";
+                if (patient1.origin == 0)
+                    origin = "Ethipoian";
+                if (patient1.origin == 1)
+                    origin = "Ashknazi";
+                else origin = "mizrahi";
+                myexcelWorksheet.Cells[2, 11] = origin;
+                myexcelWorksheet.Cells[2, 12] = patient1.WBC.ToString();
+                myexcelWorksheet.Cells[2, 13] = patient1.Neut.ToString() + "%";
+                myexcelWorksheet.Cells[2, 14] = patient1.Lymph.ToString() + "%";
+                myexcelWorksheet.Cells[2, 15] = patient1.RBC.ToString();
+                myexcelWorksheet.Cells[2, 16] = patient1.HCT.ToString() + "%";
+                myexcelWorksheet.Cells[2, 17] = patient1.Urea.ToString();
+                myexcelWorksheet.Cells[2, 18] = patient1.Hb.ToString();
+                myexcelWorksheet.Cells[2, 19] = patient1.Crtn.ToString();
+                myexcelWorksheet.Cells[2, 20] = patient1.Iron.ToString();
+                myexcelWorksheet.Cells[2, 21] = patient1.HDL.ToString();
+                myexcelWorksheet.Cells[2, 22] = patient1.AP.ToString();
 
-                myexcelWorksheet.Cells[2, 25] = arrPat[i].getLy() + "%";
-                myexcelWorksheet.Cells[2, 26] = patient1.di; //DIAG
-                myexcelWorksheet.Cells[2, 27] = patient1.se;//REC
+                myexcelWorksheet.Cells[2, 23] = patient1.di; //DIAG
+                myexcelWorksheet.Cells[2, 24] = patient1.se;//REC
 
 
-                myexcelApplication.ActiveWorkbook.SaveAs(@"C:\Users\Asus\OneDrive\Desktop\info.xls", Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal);
+                try
+                {                
+                    myexcelApplication.ActiveWorkbook.SaveAs(@"C:\Users\Asus\OneDrive\Desktop\info.xls", Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal);
+                }
+
+                catch (COMException e1)
+                {
+                    textBox5.Text = "There is no Blood test";
+                    return;
+                }
+
+
 
                 myexcelWorkbook.Close();
                 myexcelApplication.Quit();
@@ -193,6 +248,11 @@ namespace FinalProDoctor
         }
         private void button4_Click(object sender, EventArgs e)
         {
+            if (patient1 == null)
+            {
+                MessageBox.Show("You need to add patient first");
+                return;
+            }
             BloodTest start = new BloodTest();
             // this.Hide();
             start.Show();
@@ -1434,8 +1494,8 @@ namespace FinalProDoctor
         public void Clearpatient()
         {
             textBox1.Text = string.Empty; textBox2.Text = string.Empty; textBox3.Text = string.Empty; textBox4.Text = string.Empty;
-            checkBox1.Checked = false; checkBox2.Checked = false; checkBox3.Checked = false; checkBox4.Checked = false;
-            comboBox1.Text = string.Empty;
+            checkBox1.Checked = false; checkBox2.Checked = false; checkBox3.Checked = false; checkBox4.Checked = false; textBox6.Text = string.Empty;
+            comboBox1.Text = string.Empty; checkBox8.Checked = false;
             chart1.Titles.Clear();
             richTextBox1.Clear();
             foreach (var series in chart1.Series)
