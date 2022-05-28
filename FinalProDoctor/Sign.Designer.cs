@@ -198,6 +198,7 @@
             this.Controls.Add(this.label4);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Sign";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sign";
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
