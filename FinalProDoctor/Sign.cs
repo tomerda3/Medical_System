@@ -36,7 +36,7 @@ namespace FinalProDoctor
         private void button3_Click(object sender, EventArgs e)
         {
             if(checkName(textBox1.Text)== false){
-                textBox4.Text = "The user name is incorrect";
+                textBox4.Text = "The user Name is incorrect";
                 return;
             }
             if (checkPassword(textBox2.Text) == false){
@@ -67,13 +67,14 @@ namespace FinalProDoctor
                 Excel.Worksheet myexcelWorksheet = (Excel.Worksheet)myexcelWorkbook.Sheets.Add();
 
                 myexcelWorksheet.Cells[1, 1] = "id";
-                myexcelWorksheet.Cells[1, 2] = "user name";
+                myexcelWorksheet.Cells[1, 2] = "user firstName";
                 myexcelWorksheet.Cells[1, 3] = "password";
 
 
                 myexcelWorksheet.Cells[2, 1] = textBox3.Text;
                 myexcelWorksheet.Cells[2, 2] = textBox1.Text;
                 myexcelWorksheet.Cells[2, 3] = textBox2.Text;
+
 
                 myexcelApplication.ActiveWorkbook.SaveAs(@"C:\Users\Tomer\OneDrive\Desktop\user.xls", Excel.XlFileFormat.xlWorkbookNormal);
 
@@ -86,7 +87,9 @@ namespace FinalProDoctor
         bool checkName(string userName)
         {
             int count = 0, checkChar = 0;
-            for(int i =0; i< userName.Length; i++)
+            if (userName.Length < 6 && userName.Length > 8)
+                return false;
+            for (int i =0; i< userName.Length; i++)
             {
                 if ((userName[i] >= '0' && userName[i] <= '9'))
                     count++;
@@ -105,6 +108,8 @@ namespace FinalProDoctor
         bool checkPassword(string PassWord)
         {
             int count = 0, specialChar = 0,checknum = 0;
+            if (PassWord.Length < 8 && PassWord.Length > 10)
+                return false;
             for (int i = 0; i < PassWord.Length; i++)
             {
                 if ((PassWord[i] >= 'A' && PassWord[i] <= 'Z') || (PassWord[i] >= 'a' && PassWord[i] <= 'z'))
@@ -122,9 +127,9 @@ namespace FinalProDoctor
                 return false;
             return true;
         }
-        bool checkId(string PassWord)
+        bool checkId(string idcheck)
         {
-            if (PassWord.Length > 10)
+            if (idcheck.Length != 8)
                 return false;
             return true;
         }
