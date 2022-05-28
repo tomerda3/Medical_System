@@ -44,7 +44,7 @@ namespace FinalProDoctor
             float Iron = 0;
             float HDL = 0;
             float AP = 0;
-
+            
             textBox5.Text = "";
             chart1.Titles.Clear();
             foreach (var series in chart1.Series)
