@@ -71,28 +71,25 @@ namespace FinalProDoctor
                 myexcelWorksheet.Cells[1, 3] = "password";
 
 
-                myexcelWorksheet.Cells[2, 1] = textBox3.Text;
-                myexcelWorksheet.Cells[2, 2] = textBox1.Text;
-                myexcelWorksheet.Cells[2, 3] = textBox2.Text;
+                myexcelWorksheet.Cells[3, 1] = textBox3.Text;
+                myexcelWorksheet.Cells[3, 2] = textBox1.Text;
+                myexcelWorksheet.Cells[3, 3] = textBox2.Text;
 
                 try
                 {
                     myexcelApplication.ActiveWorkbook.SaveAs(@"C:\Users\Tomer\OneDrive\Desktop\user.xls", Excel.XlFileFormat.xlWorkbookNormal);
                 }
 
-                catch (FormatException e1)
+                catch (System.Runtime.InteropServices.COMException e1)
                 {
                     textBox4.Text = "There is a problem in the input data";
                     return;
                 }
 
-                myexcelApplication.ActiveWorkbook.SaveAs(@"C:\Users\Tomer\OneDrive\Desktop\user.xls", Excel.XlFileFormat.xlWorkbookNormal);
-
                 myexcelWorkbook.Close();
                 myexcelApplication.Quit();
             }
         }
-
 
         bool checkName(string userName)
         {
@@ -118,13 +115,13 @@ namespace FinalProDoctor
         bool checkPassword(string PassWord)
         {
             int count = 0, specialChar = 0,checknum = 0;
-            if (PassWord.Length < 8 && PassWord.Length > 10)
+            if (PassWord.Length < 8 || PassWord.Length > 10)
                 return false;
             for (int i = 0; i < PassWord.Length; i++)
             {
                 if ((PassWord[i] >= 'A' && PassWord[i] <= 'Z') || (PassWord[i] >= 'a' && PassWord[i] <= 'z'))
                     count++;
-                if (PassWord[i] == '!' || PassWord[i] == '#' || PassWord[i] == '$' || PassWord[i] == '&' || PassWord[i] == '%')
+                if ((!Char.IsLetterOrDigit(PassWord[i]) && (!PassWord[i].Equals(" "))))
                     specialChar++;
                 if (PassWord[i] >= '0' && PassWord[i] <= '9')
                     checknum++;
@@ -134,6 +131,8 @@ namespace FinalProDoctor
             if (specialChar < 1)
                 return false;
             if (checknum < 1)
+                return false;
+            if ((count+ specialChar+ checknum) != PassWord.Length)
                 return false;
             return true;
         }
