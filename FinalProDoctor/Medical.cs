@@ -223,19 +223,14 @@ namespace FinalProDoctor
                 myexcelWorksheet.Cells[2, 23] = patient1.di; //DIAG
                 myexcelWorksheet.Cells[2, 24] = patient1.se;//REC
 
-
                 try
                 {                
-                    myexcelApplication.ActiveWorkbook.SaveAs(@"C:\Users\Asus\OneDrive\Desktop\info.xls", Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal);
+                    myexcelApplication.ActiveWorkbook.SaveAs(@"C: \Users\Tomer\OneDrive\Desktop\info.xls", Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal);
                 }
 
                 catch (COMException e1)
                 {
-                    textBox5.Text = "There is no Blood test";
-                    return;
                 }
-
-
 
                 myexcelWorkbook.Close();
                 myexcelApplication.Quit();
@@ -1498,6 +1493,7 @@ namespace FinalProDoctor
             comboBox1.Text = string.Empty; checkBox8.Checked = false;
             chart1.Titles.Clear();
             richTextBox1.Clear();
+            richTextBox2.Clear();
             foreach (var series in chart1.Series)
             {
                 series.Points.Clear();
