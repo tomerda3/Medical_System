@@ -117,84 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="&gt;&gt;button8.Name" xml:space="preserve">
-    <value>button8</value>
-  </data>
-  <data name="&gt;&gt;button8.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;button8.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;button8.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;button6.Name" xml:space="preserve">
-    <value>button6</value>
-  </data>
-  <data name="&gt;&gt;button6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;button6.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;button6.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;button7.Name" xml:space="preserve">
-    <value>button7</value>
-  </data>
-  <data name="&gt;&gt;button7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;button7.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;button7.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;button1.Name" xml:space="preserve">
-    <value>button1</value>
-  </data>
-  <data name="&gt;&gt;button1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;button1.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 5</value>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="panel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 8, 6, 8</value>
-  </data>
-  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1428, 105</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="panel1.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
-    <value>38</value>
-  </data>
   <data name="button8.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="button8.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAABRJJREFUaEPt
@@ -234,6 +161,7 @@
   <data name="button8.Size" type="System.Drawing.Size, System.Drawing">
     <value>94, 78</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="button8.TabIndex" type="System.Int32, mscorlib">
     <value>76</value>
   </data>
@@ -300,7 +228,7 @@
     <value>NoControl</value>
   </data>
   <data name="button7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1292, 14</value>
+    <value>1182, 19</value>
   </data>
   <data name="button7.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 8, 6, 8</value>
@@ -367,8 +295,32 @@
   <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 5</value>
+  </data>
+  <data name="panel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>6, 8, 6, 8</value>
+  </data>
+  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1428, 105</value>
+  </data>
+  <data name="panel1.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
+    <value>38</value>
+  </data>
   <data name="textBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1085, 163</value>
+    <value>978, 163</value>
   </data>
   <data name="textBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 5, 4, 5</value>
@@ -401,7 +353,7 @@
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1280, 174</value>
+    <value>1173, 174</value>
   </data>
   <data name="label4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 0, 6, 0</value>
@@ -434,7 +386,7 @@
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1252, 118</value>
+    <value>1145, 118</value>
   </data>
   <data name="label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 0, 6, 0</value>
@@ -461,7 +413,7 @@
     <value>35</value>
   </data>
   <data name="textBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1085, 256</value>
+    <value>978, 256</value>
   </data>
   <data name="textBox2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 5, 4, 5</value>
@@ -494,7 +446,7 @@
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1336, 263</value>
+    <value>1229, 263</value>
   </data>
   <data name="label2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 0, 6, 0</value>
@@ -527,7 +479,7 @@
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1332, 349</value>
+    <value>1225, 349</value>
   </data>
   <data name="label3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 0, 6, 0</value>
@@ -557,7 +509,7 @@
     <value>True</value>
   </data>
   <data name="checkBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1186, 357</value>
+    <value>1079, 357</value>
   </data>
   <data name="checkBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>58, 24</value>
@@ -584,7 +536,7 @@
     <value>True</value>
   </data>
   <data name="checkBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1084, 355</value>
+    <value>977, 355</value>
   </data>
   <data name="checkBox2.Size" type="System.Drawing.Size, System.Drawing">
     <value>68, 24</value>
@@ -614,7 +566,7 @@
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1314, 394</value>
+    <value>1207, 394</value>
   </data>
   <data name="label5.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 0, 6, 0</value>
@@ -644,7 +596,7 @@
     <value>True</value>
   </data>
   <data name="checkBox3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1084, 399</value>
+    <value>977, 399</value>
   </data>
   <data name="checkBox3.Size" type="System.Drawing.Size, System.Drawing">
     <value>54, 24</value>
@@ -671,7 +623,7 @@
     <value>True</value>
   </data>
   <data name="checkBox4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1183, 399</value>
+    <value>1076, 399</value>
   </data>
   <data name="checkBox4.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 24</value>
@@ -695,7 +647,7 @@
     <value>28</value>
   </data>
   <data name="textBox3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1082, 571</value>
+    <value>975, 571</value>
   </data>
   <data name="textBox3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 5, 4, 5</value>
@@ -728,7 +680,7 @@
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1305, 514</value>
+    <value>1198, 514</value>
   </data>
   <data name="label6.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 0, 6, 0</value>
@@ -755,7 +707,7 @@
     <value>26</value>
   </data>
   <data name="textBox4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1082, 518</value>
+    <value>975, 518</value>
   </data>
   <data name="textBox4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 5, 4, 5</value>
@@ -788,7 +740,7 @@
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1321, 571</value>
+    <value>1214, 571</value>
   </data>
   <data name="label7.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 0, 6, 0</value>
@@ -815,7 +767,7 @@
     <value>24</value>
   </data>
   <data name="button3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1085, 675</value>
+    <value>978, 675</value>
   </data>
   <data name="button3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 8, 6, 8</value>
@@ -878,7 +830,7 @@
     <value>Microsoft Sans Serif, 10pt</value>
   </data>
   <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>885, 855</value>
+    <value>844, 855</value>
   </data>
   <data name="button2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 8, 6, 8</value>
@@ -905,7 +857,7 @@
     <value>20</value>
   </data>
   <data name="textBox5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1085, 735</value>
+    <value>978, 735</value>
   </data>
   <data name="textBox5.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1016,7 +968,7 @@
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
   <data name="label21.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1316, 629</value>
+    <value>1209, 629</value>
   </data>
   <data name="label21.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 0, 6, 0</value>
@@ -1052,7 +1004,7 @@
     <value>מזרחי</value>
   </data>
   <data name="comboBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1082, 632</value>
+    <value>975, 632</value>
   </data>
   <data name="comboBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 5, 4, 5</value>
@@ -1076,7 +1028,7 @@
     <value>14</value>
   </data>
   <data name="button5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1208, 865</value>
+    <value>1101, 865</value>
   </data>
   <data name="button5.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 8, 6, 8</value>
@@ -1103,7 +1055,7 @@
     <value>12</value>
   </data>
   <data name="button4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1208, 794</value>
+    <value>1101, 794</value>
   </data>
   <data name="button4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 8, 6, 8</value>
@@ -1193,7 +1145,7 @@
     <value>10</value>
   </data>
   <data name="textBox6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1085, 209</value>
+    <value>978, 209</value>
   </data>
   <data name="textBox6.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 5, 4, 5</value>
@@ -1229,7 +1181,7 @@
     <value>NoControl</value>
   </data>
   <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1256, 220</value>
+    <value>1149, 220</value>
   </data>
   <data name="label10.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 0, 6, 0</value>
@@ -1262,7 +1214,7 @@
     <value>NoControl</value>
   </data>
   <data name="checkBox5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1084, 439</value>
+    <value>977, 439</value>
   </data>
   <data name="checkBox5.Size" type="System.Drawing.Size, System.Drawing">
     <value>54, 24</value>
@@ -1292,7 +1244,7 @@
     <value>NoControl</value>
   </data>
   <data name="checkBox6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1183, 439</value>
+    <value>1076, 439</value>
   </data>
   <data name="checkBox6.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 24</value>
@@ -1325,7 +1277,7 @@
     <value>NoControl</value>
   </data>
   <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1314, 434</value>
+    <value>1207, 434</value>
   </data>
   <data name="label11.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 0, 6, 0</value>
@@ -1352,7 +1304,7 @@
     <value>7</value>
   </data>
   <data name="textBox7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1084, 301</value>
+    <value>977, 301</value>
   </data>
   <data name="textBox7.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 5, 4, 5</value>
@@ -1388,13 +1340,13 @@
     <value>NoControl</value>
   </data>
   <data name="label12.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1335, 308</value>
+    <value>1228, 308</value>
   </data>
   <data name="label12.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 0, 6, 0</value>
   </data>
   <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 44</value>
+    <value>56, 29</value>
   </data>
   <data name="label12.TabIndex" type="System.Int32, mscorlib">
     <value>83</value>
@@ -1421,7 +1373,7 @@
     <value>NoControl</value>
   </data>
   <data name="checkBox7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1084, 481</value>
+    <value>977, 481</value>
   </data>
   <data name="checkBox7.Size" type="System.Drawing.Size, System.Drawing">
     <value>54, 24</value>
@@ -1451,7 +1403,7 @@
     <value>NoControl</value>
   </data>
   <data name="checkBox8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1183, 481</value>
+    <value>1076, 481</value>
   </data>
   <data name="checkBox8.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 24</value>
@@ -1484,7 +1436,7 @@
     <value>NoControl</value>
   </data>
   <data name="label13.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1249, 481</value>
+    <value>1142, 481</value>
   </data>
   <data name="label13.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 0, 6, 0</value>
@@ -1517,7 +1469,7 @@
     <value>9, 20</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1428, 931</value>
+    <value>1316, 931</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
