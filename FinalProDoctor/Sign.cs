@@ -111,16 +111,6 @@ namespace FinalProDoctor
             }
 
 
-
-
-
-
-
-
-
-
-
-
         }
 
         bool checkName(string userName)
