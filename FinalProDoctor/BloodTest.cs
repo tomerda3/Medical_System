@@ -76,7 +76,7 @@ namespace FinalProDoctor
 
             Medical.instance.setBlood(WBC, Neut, Lymph, RBC, HCT, Urea, Hb, Crtn, Iron, HDL, AP);
             this.Hide();
-/*            Medical start = new Medical();
+           /*Medical start = new Medical();
             start.insertBlood(WBC, Neut, Lymph, RBC, HCT, Urea, Hb, Crtn, Iron, HDL, AP);
             this.Hide();
             this.Close();*/
