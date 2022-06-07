@@ -239,6 +239,8 @@ namespace FinalProDoctor
                 myexcelWorksheet.Cells[2, 23] = patient1.di; //DIAG
                 myexcelWorksheet.Cells[2, 24] = patient1.se;//REC
 
+
+
                 try
                 {                
                     myexcelApplication.ActiveWorkbook.SaveAs(@"C: \Users\Tomer\OneDrive\Desktop\info.xls", Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal);
