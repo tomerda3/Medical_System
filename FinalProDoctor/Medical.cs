@@ -75,7 +75,7 @@ namespace FinalProDoctor
 
             catch (FormatException e1)
             {
-                textBox5.Text = "The age is off limit";
+                textBox5.Text = "No input data";
                 return;
             }
 
@@ -116,7 +116,8 @@ namespace FinalProDoctor
                 textBox5.Text = "There is a problem in the input data";
                 return;
             }
-           
+
+            textBox5.Text = "";
         }
 
         private void WBCBox_TextChanged(object sender, EventArgs e)
@@ -155,6 +156,7 @@ namespace FinalProDoctor
             chart1.Titles.Add("BloodTest Result");
 
             richTextBox1.SelectionAlignment = HorizontalAlignment.Right;
+            richTextBox2.SelectionAlignment = HorizontalAlignment.Right;
             richTextBox1.AppendText(" : שם המטופל " + patient1.firstName);
             richTextBox1.AppendText("\n : אבחון המטופל\n");
 
@@ -1504,6 +1506,7 @@ namespace FinalProDoctor
         {
             textBox1.Text = string.Empty; textBox2.Text = string.Empty; textBox3.Text = string.Empty; textBox4.Text = string.Empty;
             checkBox1.Checked = false; checkBox2.Checked = false; checkBox3.Checked = false; checkBox4.Checked = false; textBox6.Text = string.Empty;
+            textBox7.Text = string.Empty;
             comboBox1.Text = string.Empty; checkBox8.Checked = false;
             chart1.Titles.Clear();
             richTextBox1.Clear();
