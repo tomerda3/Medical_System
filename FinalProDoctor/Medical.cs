@@ -66,7 +66,21 @@ namespace FinalProDoctor
             if (checkBox8.Checked)
                 drugs = true;
 
-            int age = Int32.Parse(textBox2.Text);
+            int age = 0;
+
+            try
+            {
+                age = Int32.Parse(textBox2.Text);
+            }
+
+            catch (FormatException e1)
+            {
+                textBox5.Text = "The age is off limit";
+                return;
+            }
+
+
+
             if (age > 120 || age < 0)
             {
                 textBox5.Text = "The age is off limit";
